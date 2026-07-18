@@ -1,1 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Cal+Sans&family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap");
+
 @import "tailwindcss";
+
+@theme {
+  --font-family: "Google Sans Flex", sans-serif;
+  --breakpoint-xl: 1280px;
+  --breakpoint-xxl: 1600px;
+  --color-main-blue: hsl(227, 91%, 56%); /* #2856f5*/ /* my logo main color */
+  --color-main-blue-light: hsl(212 91% 56%); /* #2988f5*/
+  --color-bg-dark: #1a1a1a;
+  --color-bg-darker: #0e0f11;
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 1rem;
+  width: 100%;
+  max-width: var(--breakpoint-xl);
+}
+
+@layer base {
+  ::root {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: var(--font-family);
+    width: 100vw;
+    height: 100dvh;
+    overflow-x: hidden;
+    background-color: var(--color-bg-darker);
+    color: white;
+  }
+
+  h1 {
+    @apply mb-4 text-4xl font-bold tracking-tight;
+  }
+
+  h2 {
+    @apply mb-3 text-3xl font-semibold tracking-tight;
+  }
+
+  h3 {
+    @apply mb-2 text-2xl font-semibold;
+  }
+
+  h4 {
+    @apply mb-2 text-xl font-medium;
+  }
+
+  p {
+    @apply mb-4 text-base leading-relaxed;
+  }
+
+  ul {
+    @apply mb-4 list-inside list-disc pl-2;
+  }
+
+  ol {
+    @apply mb-4 list-inside list-decimal pl-2;
+  }
+
+  a {
+    @apply text-blue-600 hover:underline;
+  }
+}
