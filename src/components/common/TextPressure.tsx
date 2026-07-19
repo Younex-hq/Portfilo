@@ -45,10 +45,14 @@ const debounce = (func: (...args: any[]) => void, delay: number) => {
   };
 };
 
+const isCJK = (char: string) => {
+  return /[\u3000-\u303F\u3040-\u309F\u30A0-\u30FF\uFF00-\uFFEF\u4E00-\u9FFF]/.test(char);
+};
+
 const TextPressure: React.FC<TextPressureProps> = ({
   text = "Compressa",
-  fontFamily = "Roboto Flex",
-  fontUrl = "https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght@8..144,25..151,100..1000&display=swap",
+  fontFamily = "Roboto Flex, Noto Sans JP, Noto Sans SC, sans-serif",
+  fontUrl = "https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Noto+Sans+SC:wght@100..900&family=Roboto+Flex:opsz,wdth,wght@8..144,25..151,100..1000&display=swap",
   width = true,
   weight = true,
   italic = true,
@@ -75,6 +79,10 @@ const TextPressure: React.FC<TextPressureProps> = ({
   const [lineHeight, setLineHeight] = useState(1);
 
   const chars = text.split("");
+
+  const effectiveLength = useMemo(() => {
+    return chars.reduce((acc, char) => acc + (isCJK(char) ? 2 : 1), 0);
+  }, [chars]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -111,7 +119,7 @@ const TextPressure: React.FC<TextPressureProps> = ({
     const { width: containerW, height: containerH } =
       containerRef.current.getBoundingClientRect();
 
-    let newFontSize = containerW / (chars.length / 2);
+    let newFontSize = containerW / (effectiveLength / 2);
     newFontSize = Math.max(newFontSize, minFontSize);
 
     setFontSize(newFontSize);
@@ -128,7 +136,7 @@ const TextPressure: React.FC<TextPressureProps> = ({
         setLineHeight(yRatio);
       }
     });
-  }, [chars.length, minFontSize, scale]);
+  }, [effectiveLength, minFontSize, scale]);
 
   useEffect(() => {
     const debouncedSetSize = debounce(setSize, 100);
