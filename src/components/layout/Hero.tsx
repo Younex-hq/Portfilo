@@ -2,19 +2,60 @@ import { useState, useEffect, useRef } from "react";
 import NavElements from "../common/NavElements";
 import TextPressure from "../common/TextPressure";
 import gsap from "gsap";
+import SideRays from "../common/SideRays";
+import ScrollDownArrow from "../common/ScrollDownArrow";
+import ShinyText from "../common/ShinyText";
 
 export default function Hero() {
   return (
-    <div className="relative flex h-screen w-screen flex-col items-center justify-around overflow-hidden">
-      <div className="absolute -z-1 mt-[60vh] h-screen w-[90vw] md:mt-[50vh]">
-        <HelloText />
+    <>
+      <Background />
+      <div className="relative flex h-screen w-screen flex-col items-center justify-around overflow-hidden">
+        <div className="absolute -z-1 mt-[60vh] h-screen w-[90vw] md:mt-[50vh]">
+          <HelloText />
+        </div>
+        <div className="flex flex-col items-center">
+          <ShinyText
+            text="BELIAMINE YOUNES"
+            speed={2}
+            delay={0}
+            color="#b5b5b5"
+            shineColor="#ffffff"
+            spread={120}
+            direction="left"
+            yoyo={false}
+            pauseOnHover={false}
+            disabled={false}
+          />
+          <span className="font-italianno text-4xl">Portfolio</span>
+        </div>
+        <div>
+          <NavElements />
+        </div>
+        <div className="absolute top-[95dvh] mx-auto">
+          <ScrollDownArrow />
+        </div>
       </div>
-      <div>
-        Welcome to my <span className="font-italianno text-4xl">Portfolio</span>
-      </div>
-      <div>
-        <NavElements />
-      </div>
+    </>
+  );
+}
+
+function Background() {
+  return (
+    <div className="absolute -z-1 h-screen">
+      <SideRays
+        speed={2.5}
+        rayColor1="#EAB308"
+        rayColor2="#96c8ff"
+        intensity={2}
+        spread={2}
+        origin="top-right"
+        tilt={0}
+        saturation={1.5}
+        blend={0.75}
+        falloff={1.6}
+        opacity={1}
+      />
     </div>
   );
 }
