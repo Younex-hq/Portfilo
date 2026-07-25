@@ -3,12 +3,37 @@
 
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Zodiak";
+  src:
+    url("/fonts/Zodiak-Variable.woff2") format("woff2-variations"),
+    url("/fonts/Zodiak-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Zodiak";
+  src:
+    url("/fonts/Zodiak-VariableItalic.woff2") format("woff2-variations"),
+    url("/fonts/Zodiak-VariableItalic.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 @theme {
   --font-family: "Google Sans Flex", sans-serif;
+  --font-italianno: "Italianno", cursive;
+  --font-zodiak: "Zodiak", serif;
+
   --breakpoint-xl: 1280px;
   --breakpoint-xxl: 1600px;
+
   --color-main-blue: hsl(227, 91%, 56%); /* #2856f5*/ /* my logo main color */
   --color-main-blue-light: hsl(212 91% 56%); /* #2988f5*/
+  --color-main-green: #2fb1bc;
   --color-bg-dark: #1a1a1a;
   --color-bg-darker: #0e0f11;
 }
@@ -21,7 +46,7 @@
 }
 
 @layer base {
-  ::root {
+  :root {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -34,10 +59,6 @@
     overflow-x: hidden;
     background-color: var(--color-bg-darker);
     color: white;
-  }
-
-  .font-italianno {
-    font-family: "Italianno", cursive;
   }
 
   h1 {
