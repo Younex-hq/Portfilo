@@ -1,3 +1,6 @@
+import { Logo } from "./Logo";
+import Menu4Line from "./Menu4Line";
+
 export default function NavElements() {
   return (
     <div>
@@ -31,6 +34,24 @@ export function SideNavbar() {
           Contact <span className="font-zodiak sm">03</span>
         </li>
       </ul>
+    </nav>
+  );
+}
+
+export function MobileNavBar() {
+  return (
+    <nav className="fixed top-0 left-0 right-0 z-50 p-3 md:hidden">
+      <div className="bg-bg-dark/20 w-full rounded-xl px-4 py-2 backdrop-blur-md border border-white/0 shadow-lg">
+        <div className="flex items-center justify-between">
+          <div className="relative">
+            <Logo size="50px" colorBgTW="main-green" />
+          </div>
+          <div>
+            <Menu4Line width={"2rem"} height={"1.5rem"} />
+          </div>
+        </div>
+        {/*<div>content</div>*/}
+      </div>
     </nav>
   );
 }

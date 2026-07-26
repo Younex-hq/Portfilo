@@ -7,6 +7,7 @@ import ScrollDownArrow from "../common/ScrollDownArrow";
 import ShinyText from "../common/ShinyText";
 
 export default function Hero() {
+  // TODO : make the background effects work only when they are on view
   return (
     <>
       <Background />

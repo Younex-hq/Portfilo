@@ -9,6 +9,7 @@ export default function VideoPlayer({
   width = "full",
   rounded = "rounded-3xl",
 }: VideoPlayerProps) {
+  // TODO : make the video play only when its on view // same with the other background effects of the hero
   return (
     <div className={`w-${width}`}>
       <video
