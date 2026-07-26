@@ -1,4 +1,4 @@
-import YLogo from "../../../public/svg/Y-logo-TM.svg?react";
+import YLogo from "../../assets/svg/Y-logo-TM.svg?react";
 import VideoPlayer from "../common/VideoPlayer";
 
 export default function About() {

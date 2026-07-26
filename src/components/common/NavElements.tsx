@@ -44,7 +44,7 @@ export function MobileNavBar() {
       <div className="bg-bg-dark/20 w-full rounded-xl border border-white/0 px-4 py-2 shadow-lg backdrop-blur-sm">
         <div className="flex items-center justify-between">
           <div className="relative">
-            <Logo size="50" colorBgTW="main-green" />
+            <Logo size={50} colorBgTW="main-green" />
           </div>
           <div>
             <Menu4Line width={"2rem"} height={"1.5rem"} />
