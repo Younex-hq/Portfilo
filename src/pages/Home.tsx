@@ -10,7 +10,7 @@ export default function Home() {
       <MobileNavBar />
 
       <div className="flex">
-        <div className="hidden">
+        <div className="hidden md:block">
           <SideBar />
         </div>
 
@@ -18,7 +18,7 @@ export default function Home() {
           <Content />
         </div>
       </div>
-      <div className="h-[50vh]">footer</div>
+      <div className="h-[50vh]"></div>
     </div>
   );
 }

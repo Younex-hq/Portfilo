@@ -30,7 +30,7 @@ export default function Hero() {
           />
           <span className="font-italianno text-4xl">Portfolio</span>
         </div>
-        <div>
+        <div className="hidden md:block">
           <NavElements />
         </div>
         <div className="absolute top-[95dvh] mx-auto">

@@ -1,4 +1,4 @@
-import YLogo from "../../assets/svg/Y-logo-TM.svg?react";
+import YLogo from "../../../public/svg/Y-logo-TM.svg?react";
 
 type LogoProps = {
   size?: string;
@@ -13,8 +13,8 @@ export function Logo({
 }: LogoProps) {
   return (
     <div
-      className={`relative flex h-[${size}] items-center justify-center`}
-      style={{ aspectRatio: 1 / 3 }}
+      className="relative flex items-center justify-center"
+      style={{ height: size }}
     >
       <YLogo
         className={`absolute h-full w-auto text-${colorTextTW}`}
