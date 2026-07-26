@@ -5,7 +5,7 @@ export default function About() {
   return (
     <div className="m-auto mt-[10%]">
       <TheName />
-      <div className="mt-[20%] flex w-fit flex-col">
+      <div className="mt-[40%] flex w-fit flex-col md:mt-[20%]">
         <TheJob />
       </div>
     </div>
@@ -17,8 +17,8 @@ function TheName() {
     <div className="flex flex-col items-center">
       <div className="font-zodiak flex flex-col items-center">
         <div className="font-italianno w-full text-4xl md:text-6xl">I am</div>
-        <span className="text-5xl font-medium md:text-8xl">BELIAMINE</span>
-        <span className="text-5xl md:text-8xl">Younes</span>
+        <span className="text-5xl font-medium md:text-8xl text-white">BELIAMINE</span>
+        <span className="text-5xl md:text-8xl text-white">Younes</span>
         <div className="py-20">
           <TheLogo />
         </div>
@@ -44,9 +44,10 @@ function TheLogo() {
 function TheJob() {
   return (
     <>
-      <div className="font-zodiak w-fit text-6xl opacity-60">a</div>
       <div className="flex w-full flex-col items-center justify-between gap-10 md:flex-row">
+        {/* 1st CARD --------------------------------------- */}
         <div className="relative w-full">
+          <div className="font-zodiak w-fit text-6xl opacity-60">a</div>
           <div className="absolute">
             <div className="ml-4 p-2 text-[3.3rem]/14 font-bold md:ml-2 md:text-[3.5rem]/14">
               WEB <span className="font-italianno text-[5rem]">D</span>EVELOPER
@@ -60,6 +61,7 @@ function TheJob() {
           </div>
         </div>
 
+        {/* 2nd CARD --------------------------------------- */}
         <div className="relative md:w-[120%]">
           <div className="font-zodiak w-fit text-5xl opacity-60">&</div>
           <div className="relative">

@@ -36,6 +36,7 @@
   --color-main-green: #2fb1bc; /* TODO : change the green color, make the theme green */
   --color-bg-dark: #1a1a1a;
   --color-bg-darker: #0e0f11;
+  --color-off-white: hsl(240, 11%, 96%); /* #f5f5f7 */
 }
 
 @utility container {
@@ -58,7 +59,8 @@
     height: 100dvh;
     overflow-x: hidden;
     background-color: var(--color-bg-darker);
-    color: white;
+    /*color: var(--color-off-white);*/
+    color: var(--color-off-white, white);
   }
 
   h1 {
