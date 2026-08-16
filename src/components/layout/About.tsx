@@ -1,12 +1,16 @@
 import YLogo from "../../assets/svg/Y-logo-TM.svg?react";
+import { Location } from "../common/Location";
 import VideoPlayer from "../common/VideoPlayer";
 
 export default function About() {
   return (
     <div className="m-auto mt-[10%]">
       <TheName />
-      <div className="mt-[40%] flex w-fit flex-col md:mt-[20%]">
+      <div className="mt-[40%] flex flex-col md:mt-[20%]">
         <TheJob />
+      </div>
+      <div className="mt-[40%] flex flex-col md:mt-[20%]">
+        <Location />
       </div>
     </div>
   );
@@ -17,8 +21,10 @@ function TheName() {
     <div className="flex flex-col items-center">
       <div className="font-zodiak flex flex-col items-center">
         <div className="font-italianno w-full text-4xl md:text-6xl">I am</div>
-        <span className="text-5xl font-medium md:text-8xl text-white">BELIAMINE</span>
-        <span className="text-5xl md:text-8xl text-white">Younes</span>
+        <span className="text-5xl font-medium text-white md:text-8xl">
+          BELIAMINE
+        </span>
+        <span className="text-5xl text-white md:text-8xl">Younes</span>
         <div className="py-20">
           <TheLogo />
         </div>

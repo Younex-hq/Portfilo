@@ -39,6 +39,7 @@ export default function ScrollDownArrow() {
   });
 
   return (
+    // TODO : make it desapear when starting to scroll
     <div className="relative h-9 w-9">
       <img
         ref={arrow1}
