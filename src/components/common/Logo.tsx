@@ -7,7 +7,7 @@ type LogoProps = {
 };
 
 export function Logo({
-  size = "70",
+  size = 70,
   colorBgTW = "[#2988f5]",
   colorTextTW = "white",
 }: LogoProps) {
