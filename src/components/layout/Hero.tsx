@@ -5,9 +5,36 @@ import gsap from "gsap";
 import SideRays from "../common/SideRays";
 import ScrollDownArrow from "../common/ScrollDownArrow";
 import ShinyText from "../common/ShinyText";
+import { useGSAP } from "@gsap/react";
 
 export default function Hero() {
   // TODO : make the background effects work only when they are on view
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const nameRef = useRef<HTMLDivElement>(null);
+  const protfolioRef = useRef<HTMLSpanElement>(null);
+
+  useGSAP(
+    () => {
+      gsap.from(nameRef.current, {
+        autoAlpha: 0,
+        y: -50,
+        scale: 0.85,
+        delay: 0.7,
+      });
+      gsap.from(protfolioRef.current, {
+        autoAlpha: 0,
+        y: -50,
+        scale: 0.8,
+        delay: 0.8,
+      });
+    },
+    {
+      scope: containerRef,
+      revertOnUpdate: true,
+    },
+  );
+
   return (
     <>
       <Background />
@@ -15,20 +42,24 @@ export default function Hero() {
         <div className="absolute -z-1 mt-[60vh] h-screen w-[90vw] md:mt-[50vh]">
           <HelloText />
         </div>
-        <div className="flex flex-col items-center">
-          <ShinyText
-            text="BELIAMINE YOUNES"
-            speed={2}
-            delay={0}
-            color="#b5b5b5"
-            shineColor="#ffffff"
-            spread={120}
-            direction="left"
-            yoyo={false}
-            pauseOnHover={false}
-            disabled={false}
-          />
-          <span className="font-italianno text-4xl">Portfolio</span>
+        <div ref={containerRef} className="flex flex-col items-center">
+          <div ref={nameRef}>
+            <ShinyText
+              text="BELIAMINE YOUNES"
+              speed={2}
+              delay={0}
+              color="#b5b5b5"
+              shineColor="#ffffff"
+              spread={120}
+              direction="left"
+              yoyo={false}
+              pauseOnHover={false}
+              disabled={false}
+            />
+          </div>
+          <span ref={protfolioRef} className="font-italianno text-4xl">
+            Portfolio
+          </span>
         </div>
         <div className="hidden md:block">
           <NavElements />

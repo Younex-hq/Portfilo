@@ -9,6 +9,7 @@ export default function ScrollDownArrow() {
   const containerRef = useRef<HTMLDivElement>(null);
   const arrow1 = useRef<HTMLImageElement>(null);
   const arrow2 = useRef<HTMLImageElement>(null);
+
   const loopTl = useRef<gsap.core.Timeline | null>(null);
 
   useGSAP(

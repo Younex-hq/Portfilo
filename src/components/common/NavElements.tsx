@@ -1,19 +1,39 @@
 import { Logo } from "./Logo";
 import Menu4Line from "./Menu4Line";
 
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
 export default function NavElements() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      gsap.from(".nav-title", {
+        autoAlpha: 0,
+        y: 50,
+        scale: 0.85,
+        delay: 0.7,
+        stagger: 0.1,
+      });
+    },
+    {
+      scope: containerRef,
+      revertOnUpdate: true,
+    },
+  );
+
+  const navTitle = ["About Me", "Projects", "Contact"];
+
   return (
-    <div>
+    <div ref={containerRef}>
       <ul className="flex list-none rounded-4xl p-5">
-        <li className="m-2 cursor-pointer px-4 py-2 opacity-70 hover:opacity-100">
-          About Me
-        </li>
-        <li className="m-2 cursor-pointer px-4 py-2 opacity-70 hover:opacity-100">
-          Projects
-        </li>
-        <li className="m-2 cursor-pointer px-4 py-2 opacity-70 hover:opacity-100">
-          Contact
-        </li>
+        {navTitle.map((nav) => (
+          <li className="nav-title m-2 cursor-pointer px-4 py-2 opacity-70 hover:opacity-100">
+            {nav}
+          </li>
+        ))}
       </ul>
     </div>
   );
