@@ -1,46 +1,67 @@
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function ScrollDownArrow() {
+  const containerRef = useRef<HTMLDivElement>(null);
   const arrow1 = useRef<HTMLImageElement>(null);
   const arrow2 = useRef<HTMLImageElement>(null);
-  const tl = useRef<gsap.core.Timeline | null>(null);
+  const loopTl = useRef<gsap.core.Timeline | null>(null);
 
-  useGSAP(() => {
-    // One timeline that repeats forever
-    tl.current = gsap.timeline({ repeat: -1 });
+  useGSAP(
+    () => {
+      // infinite loop of the arrow
+      loopTl.current = gsap.timeline({ repeat: -1 });
+      loopTl.current
+        .fromTo(
+          arrow1.current,
+          { y: 0, autoAlpha: 0.9, scale: 0.9 },
+          {
+            y: 20,
+            duration: 1.2,
+            ease: "power1.out",
+            autoAlpha: 0,
+            scale: 0.75,
+          },
+        )
+        .fromTo(
+          arrow2.current,
+          { y: -10, autoAlpha: 0, scale: 0.9 },
+          {
+            y: 0,
+            duration: 1.2,
+            ease: "power1.in",
+            autoAlpha: 0.9,
+            scale: 0.9,
+          },
+          "<+0.5",
+        );
 
-    // Arrow 1: starts immediately
-    tl.current
-      .fromTo(
-        arrow1.current,
-        { y: 0, autoAlpha: 0.9, scale: 0.9 },
-        {
-          y: 20,
-          duration: 1.2,
-          ease: "power1.out",
-          autoAlpha: 0,
-          scale: 0.75,
+      // hide container on scroll and pause the loop
+      ScrollTrigger.create({
+        start: "top top",
+        end: "+=30",
+        onLeave: () => {
+          gsap.to(containerRef.current, {
+            autoAlpha: 0,
+            duration: 0.3,
+            onComplete: () => loopTl.current?.pause(),
+          });
         },
-      )
-      .fromTo(
-        arrow2.current,
-        { y: -10, autoAlpha: 0, scale: 0.9 },
-        {
-          y: 0,
-          duration: 1.2,
-          ease: "power1.in",
-          autoAlpha: 0.9,
-          scale: 0.9,
+        onEnterBack: () => {
+          loopTl.current?.play();
+          gsap.to(containerRef.current, { autoAlpha: 1, duration: 0.3 });
         },
-        "<+0.5",
-      );
-  });
+      });
+    },
+    { scope: containerRef },
+  );
 
   return (
-    // TODO : make it desapear when starting to scroll
-    <div className="relative h-9 w-9">
+    <div ref={containerRef} className="relative h-9 w-9">
       <img
         ref={arrow1}
         src="/svg/arrow_down.svg"
