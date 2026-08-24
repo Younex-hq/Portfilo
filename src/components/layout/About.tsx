@@ -2,10 +2,19 @@ import YLogo from "../../assets/svg/Y-logo-TM.svg?react";
 import { Location } from "../common/Location";
 import VideoPlayer from "../common/VideoPlayer";
 
+import { useRef } from "react";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
+
 export default function About() {
   return (
     <div className="m-auto mt-[10%]">
-      <TheName />
+      <div className="the-name">
+        <TheName />
+      </div>
       <div className="mt-[40%] flex flex-col md:mt-[20%]">
         <TheJob />
       </div>
@@ -17,8 +26,29 @@ export default function About() {
 }
 
 function TheName() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      gsap.from(containerRef.current, {
+        autoAlpha: 0,
+        y: 100,
+        scale: 0.85,
+
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 90%",
+          end: "top 50%",
+          immediateRender: false,
+          scrub: true,
+        },
+      });
+    },
+    { scope: containerRef },
+  );
+
   return (
-    <div className="flex flex-col items-center">
+    <div ref={containerRef} className="flex flex-col items-center">
       <div className="font-zodiak flex flex-col items-center">
         <div className="font-italianno w-full text-4xl md:text-6xl">I am</div>
         <span className="text-5xl font-medium text-white md:text-8xl">
@@ -48,11 +78,51 @@ function TheLogo() {
 }
 
 function TheJob() {
+  const jobContainerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      const tl = gsap.timeline({});
+
+      tl.from(".card1", {
+        autoAlpha: 0,
+        y: 100,
+
+        scrollTrigger: {
+          trigger: jobContainerRef.current,
+          start: "top 80%",
+          end: "top 40%",
+          immediateRender: false,
+          scrub: true,
+        },
+      }).from(
+        ".card2",
+        {
+          autoAlpha: 0,
+          y: 100,
+
+          scrollTrigger: {
+            trigger: jobContainerRef.current,
+            start: "top 50%",
+            end: "top 10%",
+            immediateRender: false,
+            scrub: true,
+          },
+        },
+        "+=1",
+      );
+    },
+    { scope: jobContainerRef },
+  );
+
   return (
     <>
-      <div className="flex w-full flex-col items-center justify-between gap-10 md:flex-row">
+      <div
+        ref={jobContainerRef}
+        className="flex w-full flex-col items-center justify-between gap-10 md:flex-row"
+      >
         {/* 1st CARD --------------------------------------- */}
-        <div className="relative w-full">
+        <div className="card1 relative w-full">
           <div className="font-zodiak w-fit text-6xl opacity-60">a</div>
           <div className="absolute">
             <div className="ml-4 p-2 text-[3.3rem]/14 font-bold md:ml-2 md:text-[3.5rem]/14">
@@ -68,7 +138,7 @@ function TheJob() {
         </div>
 
         {/* 2nd CARD --------------------------------------- */}
-        <div className="relative md:w-[120%]">
+        <div className="card2 relative md:w-[120%]">
           <div className="font-zodiak w-fit text-5xl opacity-60">&</div>
           <div className="relative">
             <div className="m-auto w-[90%] md:w-full">
