@@ -87,6 +87,7 @@ function TheJob() {
       tl.from(".card1", {
         autoAlpha: 0,
         y: 100,
+        scale: 0.85,
 
         scrollTrigger: {
           trigger: jobContainerRef.current,
@@ -95,22 +96,19 @@ function TheJob() {
           immediateRender: false,
           scrub: true,
         },
-      }).from(
-        ".card2",
-        {
-          autoAlpha: 0,
-          y: 100,
+      }).from(".card2", {
+        autoAlpha: 0,
+        y: 100,
+        scale: 0.85,
 
-          scrollTrigger: {
-            trigger: jobContainerRef.current,
-            start: "top 50%",
-            end: "top 10%",
-            immediateRender: false,
-            scrub: true,
-          },
+        scrollTrigger: {
+          trigger: jobContainerRef.current,
+          start: "top 50%",
+          end: "top 10%",
+          immediateRender: false,
+          scrub: true,
         },
-        "+=1",
-      );
+      });
     },
     { scope: jobContainerRef },
   );
