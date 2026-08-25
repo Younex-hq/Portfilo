@@ -48,9 +48,15 @@ function TheName() {
   );
 
   return (
-    <div ref={containerRef} className="flex flex-col items-center">
-      <div className="font-zodiak flex flex-col items-center">
-        <div className="font-italianno w-full text-4xl md:text-6xl">I am</div>
+    <div
+      ref={containerRef}
+      className="flex flex-col items-center md:items-center md:justify-center"
+    >
+      <div className="font-zodiak flex flex-col items-center md:mr-30 md:items-center md:justify-center">
+        {/*<div className="font-italianno w-full text-4xl md:text-6xl">I am</div>*/}
+        <div className="font-italianno w-full text-4xl md:text-6xl">
+          The name is
+        </div>
         <span className="text-5xl font-medium text-white md:text-8xl">
           BELIAMINE
         </span>
@@ -79,6 +85,8 @@ function TheLogo() {
 
 function TheJob() {
   const jobContainerRef = useRef<HTMLDivElement>(null);
+
+  // TODO : animate the text on the card maybe !!?
 
   useGSAP(
     () => {
