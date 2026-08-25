@@ -125,40 +125,37 @@ function TheJob() {
     <>
       <div
         ref={jobContainerRef}
-        className="flex w-full flex-col items-center justify-between gap-10 md:flex-row"
+        className="flex w-full flex-col items-center justify-around gap-10 px-5 md:flex-row"
       >
         {/* 1st CARD --------------------------------------- */}
-        <div className="card1 relative w-full">
-          <div className="font-zodiak w-fit text-6xl opacity-60">a</div>
-          <div className="absolute">
-            <div className="ml-4 p-2 text-[3.3rem]/14 font-bold md:ml-2 md:text-[3.5rem]/14">
-              WEB <span className="font-italianno text-[5rem]">D</span>EVELOPER
+        <div className="card1">
+          <div className="relative">
+            <div className="0 absolute -top-20 w-full">
+              <div className="font-italianno text-8xl">a</div>
+              <div className="m-auto w-fit text-4xl font-bold uppercase sm:text-5xl">
+                Web{" "}
+                <span className="font-italianno text-6xl sm:text-7xl">D</span>
+                eveloper
+              </div>
             </div>
-            <div className="font-zodiak absolute top-6 right-6 ml-auto w-fit pt-3 text-[0.95rem] md:relative md:-top-6 md:right-2">
-              Full Stack
-            </div>
-          </div>
-          <div className="m-auto w-[90%] md:w-[30vw]">
             <VideoPlayer src="/media/vid-dev.webm" rounded="rounded-2xl" />
           </div>
         </div>
 
         {/* 2nd CARD --------------------------------------- */}
-        <div className="card2 relative md:w-[120%]">
-          <div className="font-zodiak w-fit text-5xl opacity-60">&</div>
-          <div className="relative">
-            <div className="m-auto w-[90%] md:w-full">
-              <VideoPlayer src="/media/vid-designer.webm" />
-            </div>
-            <div className="ml-4 pt-3 md:ml-0">
-              <div className="-mb-9 text-[3.3rem]/14 font-bold">
-                GRAPHIC <span className="font-italianno text-[5rem]">D</span>
-                ESIGNER
+        <div className="card2">
+          <div className="">
+            <div className="font-italianno text-6xl">&</div>
+            <VideoPlayer src="/media/vid-designer.webm" />
+            <div>
+              <div className="m-auto w-fit text-center text-4xl font-bold uppercase sm:text-5xl">
+                Graphic{" "}
+                <span className="font-italianno text-6xl sm:text-7xl">D</span>
+                esigner
               </div>
-              <br />
-              <div className="font-zodiak pt-3 text-[0.95rem]">
-                I use my Grahic Design expertise to build beautiful UIs with
-                great UX
+              <div className="font-zodiak text-center">
+                I use my <span className="font-bold">Grahic Design</span>{" "}
+                expertise to build beautiful UIs with great UX
               </div>
             </div>
           </div>
@@ -166,4 +163,18 @@ function TheJob() {
       </div>
     </>
   );
+}
+
+{
+  /*<div className="ml-4 pt-3 md:ml-0">
+  <div className="-mb-9 text-[3.3rem]/14 font-bold">
+    GRAPHIC <span className="font-italianno text-[5rem]">D</span>
+    ESIGNER
+  </div>
+  <br />
+  <div className="font-zodiak pt-3 text-[0.95rem]">
+    I use my Grahic Design expertise to build beautiful UIs with
+    great UX
+  </div>
+</div>*/
 }
