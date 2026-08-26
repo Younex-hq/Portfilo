@@ -164,17 +164,3 @@ function TheJob() {
     </>
   );
 }
-
-{
-  /*<div className="ml-4 pt-3 md:ml-0">
-  <div className="-mb-9 text-[3.3rem]/14 font-bold">
-    GRAPHIC <span className="font-italianno text-[5rem]">D</span>
-    ESIGNER
-  </div>
-  <br />
-  <div className="font-zodiak pt-3 text-[0.95rem]">
-    I use my Grahic Design expertise to build beautiful UIs with
-    great UX
-  </div>
-</div>*/
-}
