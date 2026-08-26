@@ -111,8 +111,8 @@ function TheJob() {
 
         scrollTrigger: {
           trigger: jobContainerRef.current,
-          start: "top 50%",
-          end: "top 10%",
+          start: "top 60%",
+          end: "top 30%",
           immediateRender: false,
           scrub: true,
         },

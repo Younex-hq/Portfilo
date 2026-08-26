@@ -29,9 +29,9 @@ export default function NavElements() {
         x: -200,
         ease: "power2.out",
         stagger: 0.1,
-        immediateRender: false, // Prevents reading the initial hidden state from `from()` // this shit is a life saving
+        immediateRender: false, // Prevents this tween from overriding autoAlpha on page load
         scrollTrigger: {
-          trigger: containerRef.current, // Use the wrapper ref as trigger
+          trigger: containerRef.current,
           start: "top 50%",
           end: "bottom top",
           scrub: true,
