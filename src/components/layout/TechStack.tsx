@@ -13,9 +13,71 @@ import { databaseExtraStack } from "../../data/TechStackData";
 import { FaReact as IconReact } from "react-icons/fa";
 import { SiNestjs as IconNestJs } from "react-icons/si";
 import { FaDatabase as IconDatabase } from "react-icons/fa";
+// import { FaTools as IconTools } from "react-icons/fa";
+import { LiaToolsSolid as IconTools } from "react-icons/lia";
+import { CiPen as IconDesign } from "react-icons/ci";
+
 import ShinyWrapper from "../common/ShinyWrapper";
+import { useRef } from "react";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(useGSAP);
 
 export default function TechStack() {
+  gsap.registerPlugin(useGSAP);
+  const ormOdm = useRef<HTMLSpanElement>(null);
+
+  const tl = gsap.timeline({ repeat: -1 });
+
+  useGSAP(
+    () => {
+      tl.fromTo(
+        ".theR",
+        {
+          autoAlpha: 0,
+          x: -20,
+          scale: 0.85,
+        },
+        {
+          autoAlpha: 1,
+          x: 0,
+          scale: 1,
+          duration: 1,
+        },
+        "<",
+      )
+        .to(".theR", {
+          autoAlpha: 0,
+          x: 20,
+          scale: 0.85,
+          delay: 2,
+        })
+        .fromTo(
+          ".theD",
+          {
+            autoAlpha: 0,
+            x: -20,
+            scale: 0.85,
+          },
+          {
+            autoAlpha: 1,
+            x: 0,
+            scale: 1,
+            duration: 1,
+          },
+          "=-0.5",
+        )
+        .to(".theD", {
+          autoAlpha: 0,
+          x: 20,
+          scale: 0.85,
+          delay: 2,
+        });
+    },
+    { scope: ormOdm },
+  );
+
   // TODO: Add magnetic shxt to the cards so they snap to center on mobile
 
   return (
@@ -60,7 +122,13 @@ export default function TechStack() {
           <div className="flex items-center">
             <hr className="w-[6vw] opacity-50 sm:w-[3vw]" />
             <div className="text-center">
-              ORM / <div className="text-sm">Queries</div>
+              O
+              <span ref={ormOdm} className="relative">
+                <span className="opacity-0"> _ </span>
+                <span className="theR absolute left-[18%] opacity-0">R</span>
+                <span className="theD absolute left-[17%] opacity-0">D</span>
+              </span>
+              M / <div className="text-sm">Queries</div>
             </div>
             <hr className="w-[6vw] opacity-50 sm:w-[3vw]" />
           </div>
@@ -73,20 +141,67 @@ export default function TechStack() {
           />
         </div>
       </div>
-      <br />
-      <div className="mt-10 px-5 font-light tracking-wide opacity-80">
+      {/*<br />
+      <div className="mt-10 flex flex-col gap-3 px-5 text-center font-light tracking-wide opacity-80">
         <div>
           <span>Languages that I used before: </span>
-          <span className="font-zodiak font-medium">
-            C++, Java, Kotlin, Dart, Flutter,
+          <span className="font-zodiak block font-medium md:inline">
+            C++, Java, Kotlin, Dart, Flutter
           </span>
         </div>
         <div>
           <span>Languages that I am intrested in: </span>
           <span className="font-zodiak font-medium">Go</span>
         </div>
-      </div>
+      </div>*/}
+
+      <ToolsStack />
     </>
+  );
+}
+
+function ToolsStack() {
+  return (
+    <div className="mt-20 flex w-full flex-col justify-around gap-10 p-5 sm:mt-10">
+      <div className="border-off-white/10 relative flex-1 rounded-2xl border p-5">
+        <div className="font-zodiak mb-9 text-center text-2xl md:mb-5">
+          Dev Tools
+        </div>
+        <div className="absolute right-7 bottom-7 flex text-7xl opacity-20 sm:hidden md:top-10 md:right-10">
+          <IconTools />
+        </div>
+        <ul className="flex flex-col justify-center gap-5 md:list-none md:flex-row md:gap-10">
+          <li>
+            Git <span className="opacity-70">/ GitHub...</span>
+          </li>
+          <li>Docker</li>
+          <li>
+            Vim <span className="opacity-70">/ Neovim</span>
+          </li>
+        </ul>
+      </div>
+      <div className="border-off-white/10 relative flex-1 rounded-2xl border p-5">
+        <div className="font-zodiak mb-9 text-center text-2xl md:mb-5">
+          Design Tools
+        </div>
+        <div className="absolute right-7 bottom-7 flex -rotate-90 text-7xl opacity-20 sm:hidden md:top-10 md:right-10">
+          <IconDesign />
+        </div>
+        <ul className="flex flex-col justify-center gap-5 md:list-none md:flex-row md:gap-10">
+          <li>
+            <span className="font-light">Adobe</span> Photoshop
+          </li>
+          <li>
+            <span className="font-light">Adobe</span> Illustrator
+          </li>
+          <li>
+            <span className="font-light">Adobe</span> InDesign
+          </li>
+          <li>Figma / Penpot</li>
+          <li>Canva</li>
+        </ul>
+      </div>
+    </div>
   );
 }
 
@@ -108,7 +223,7 @@ function TechCard({ title, basic, more, extra, gradient }: TechStackProps) {
 
   return (
     <ShinyWrapper
-      className={`min-w-[65vw] rounded-2xl p-5 sm:min-w-[19vw] ${gradientDirection} border-off-white/10 border`}
+      className={`min-w-[85vw] rounded-2xl p-5 sm:min-w-[19vw] ${gradientDirection} border-off-white/10 border`}
       speed={6}
       direction={gradient !== "center" ? gradient : undefined}
       pauseOnHover={false}
