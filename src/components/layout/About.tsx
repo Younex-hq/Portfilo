@@ -6,6 +6,7 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import TechStack from "./TechStack";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -20,6 +21,9 @@ export default function About() {
       </div>
       <div className="mt-[40%] flex flex-col md:mt-[20%]">
         <Location />
+      </div>
+      <div className="mt-[40%] flex flex-col md:mt-[20%]">
+        <TechStack />
       </div>
     </div>
   );
@@ -57,10 +61,8 @@ function TheName() {
         <div className="font-italianno w-full text-4xl md:text-6xl">
           The name is
         </div>
-        <span className="text-5xl font-medium text-white md:text-8xl">
-          BELIAMINE
-        </span>
-        <span className="text-5xl text-white md:text-8xl">Younes</span>
+        <span className="text-5xl font-medium md:text-8xl">BELIAMINE</span>
+        <span className="text-5xl md:text-8xl">Younes</span>
         <div className="py-20">
           <TheLogo />
         </div>
