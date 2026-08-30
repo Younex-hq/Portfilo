@@ -76,7 +76,7 @@ export function Location() {
           className="h-full w-full rounded-t-2xl object-cover"
         />
       </div>
-      <div className="location-info bg-bg-dark flex items-center justify-between rounded-2xl rounded-t-none px-4 py-2 opacity-0">
+      <div className="location-info border-off-white/10 flex items-center justify-between rounded-2xl rounded-t-none border border-t-0 px-4 py-2 opacity-0">
         <span className="location-info text-5xl">Algiers, Algeria</span>
         <LocalTime className="w-fit text-center text-3xl font-bold" />
       </div>

@@ -16,25 +16,27 @@ import { FaDatabase as IconDatabase } from "react-icons/fa";
 import ShinyWrapper from "../common/ShinyWrapper";
 
 export default function TechStack() {
+  // TODO: Add magnetic shxt to the cards so they snap to center on mobile
+
   return (
     <>
-      <div>
-        <div className="text-4xl">
+      <div className="sm:max-w-325">
+        <div className="p-5 text-4xl sm:p-0">
           <span className="font-italianno text-6xl">Tech</span> Stack
         </div>
         <br />
 
-        <div className="flex items-center justify-center gap-5 text-7xl">
-          <IconReact />
+        <div className="m-auto flex w-fit items-center gap-5 text-5xl opacity-90 md:text-7xl">
+          <IconReact title="React" />
           <hr className="w-[5vw]" />
-          <IconNestJs />
+          <IconNestJs title="NestJS" />
           <hr className="w-[5vw]" />
-          <IconDatabase />
+          <IconDatabase title="Different Database Types" />
         </div>
         <br />
         <br />
 
-        <div className="items- flex h-full max-w-[1300px]">
+        <div className="flex h-full w-screen overflow-auto px-5">
           <TechCard
             title="Frontend"
             basic={frontendStack}
@@ -42,22 +44,26 @@ export default function TechStack() {
             extra={frontendExtraStack}
             gradient="right"
           />
-          <hr className="m-auto w-[5vw]" />
-          <div className="m-auto text-center">
-            Rest API <div className="text-off-white/60 text-sm">GraphQL</div>
+          <div className="flex items-center">
+            <hr className="w-[6vw] opacity-50 sm:w-[3vw]" />
+            <div className="text-center">
+              Rest API <div className="text-off-white/60 text-sm">GraphQL</div>
+            </div>
+            <hr className="w-[6vw] opacity-50 sm:w-[3vw]" />
           </div>
-          <hr className="m-auto w-[5vw]" />
           <TechCard
             title="Backend"
             basic={backendStack}
             more={backMoreStack}
             gradient="center"
           />
-          <hr className="m-auto w-[5vw]" />
-          <div className="m-auto text-center">
-            ORM / <div className="text-sm">Queries</div>
+          <div className="flex items-center">
+            <hr className="w-[6vw] opacity-50 sm:w-[3vw]" />
+            <div className="text-center">
+              ORM / <div className="text-sm">Queries</div>
+            </div>
+            <hr className="w-[6vw] opacity-50 sm:w-[3vw]" />
           </div>
-          <hr className="m-auto w-[5vw]" />
           <TechCard
             title="Database"
             basic={databaseStack}
@@ -68,7 +74,7 @@ export default function TechStack() {
         </div>
       </div>
       <br />
-      <div className="mt-10 font-light tracking-wide opacity-80">
+      <div className="mt-10 px-5 font-light tracking-wide opacity-80">
         <div>
           <span>Languages that I used before: </span>
           <span className="font-zodiak font-medium">
@@ -102,14 +108,16 @@ function TechCard({ title, basic, more, extra, gradient }: TechStackProps) {
 
   return (
     <ShinyWrapper
-      className={`rounded-2xl p-5 md:w-1/4 ${gradientDirection}`}
+      className={`min-w-[65vw] rounded-2xl p-5 sm:min-w-[19vw] ${gradientDirection} border-off-white/10 border`}
       speed={6}
       direction={gradient !== "center" ? gradient : undefined}
       pauseOnHover={false}
       yoyo={gradient === "center" ? true : false}
       angle={90}
     >
-      <div className={``}>
+      <div
+      // className={`min-w-[65vw] rounded-2xl border p-5 sm:min-w-[16vw] ${gradientDirection}`}
+      >
         <div className="font-zodiak mb-5 text-2xl">{title}</div>
         <br />
         <div className="">
