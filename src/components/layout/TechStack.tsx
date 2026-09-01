@@ -13,8 +13,7 @@ import { databaseExtraStack } from "../../data/TechStackData";
 import { FaReact as IconReact } from "react-icons/fa";
 import { SiNestjs as IconNestJs } from "react-icons/si";
 import { FaDatabase as IconDatabase } from "react-icons/fa";
-// import { FaTools as IconTools } from "react-icons/fa";
-import { LiaToolsSolid as IconTools } from "react-icons/lia";
+import { RxCode as IconDev } from "react-icons/rx";
 import { CiPen as IconDesign } from "react-icons/ci";
 
 import ShinyWrapper from "../common/ShinyWrapper";
@@ -78,97 +77,137 @@ export default function TechStack() {
     { scope: ormOdm },
   );
 
-  // TODO: Add magnetic shxt to the cards so they snap to center on mobile
+  const teckStackRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      gsap.from(teckStackRef.current, {
+        autoAlpha: 0,
+        y: 100,
+        scale: 0.85,
+
+        scrollTrigger: {
+          trigger: teckStackRef.current,
+          start: "top 90%",
+          end: "top 50%",
+          immediateRender: false,
+        },
+
+        onComplete: () => {
+          const tl = gsap.timeline();
+
+          tl.fromTo(
+            ".tech-cards > *",
+            {
+              x: -100,
+              autoAlpha: 0,
+              scale: 0.85,
+            },
+            {
+              x: 0,
+              autoAlpha: 1,
+              scale: 1,
+              stagger: 0.2,
+              delay: -0.2,
+            },
+          ).fromTo(
+            ".tools-stack > *",
+            {
+              y: -100,
+              autoAlpha: 0,
+              scale: 0.85,
+            },
+            {
+              y: 0,
+              autoAlpha: 1,
+              scale: 1,
+              stagger: 0.2,
+            },
+          );
+        },
+      });
+    },
+    { scope: teckStackRef },
+  );
 
   return (
-    <>
-      <div className="sm:max-w-325">
-        <div className="p-5 text-4xl sm:p-0">
-          <span className="font-italianno text-6xl">Tech</span> Stack
-        </div>
-        <br />
-
-        <div className="m-auto flex w-fit items-center gap-5 text-5xl opacity-90 md:text-7xl">
-          <IconReact title="React" />
-          <hr className="w-[5vw]" />
-          <IconNestJs title="NestJS" />
-          <hr className="w-[5vw]" />
-          <IconDatabase title="Different Database Types" />
-        </div>
-        <br />
-        <br />
-
-        <div className="flex h-full w-screen overflow-auto px-5">
-          <TechCard
-            title="Frontend"
-            basic={frontendStack}
-            more={frontendMoreStack}
-            extra={frontendExtraStack}
-            gradient="right"
-          />
-          <div className="flex items-center">
-            <hr className="w-[6vw] opacity-50 sm:w-[3vw]" />
-            <div className="text-center">
-              Rest API <div className="text-off-white/60 text-sm">GraphQL</div>
-            </div>
-            <hr className="w-[6vw] opacity-50 sm:w-[3vw]" />
-          </div>
-          <TechCard
-            title="Backend"
-            basic={backendStack}
-            more={backMoreStack}
-            gradient="center"
-          />
-          <div className="flex items-center">
-            <hr className="w-[6vw] opacity-50 sm:w-[3vw]" />
-            <div className="text-center">
-              O
-              <span ref={ormOdm} className="relative">
-                <span className="opacity-0"> _ </span>
-                <span className="theR absolute left-[18%] opacity-0">R</span>
-                <span className="theD absolute left-[17%] opacity-0">D</span>
-              </span>
-              M / <div className="text-sm">Queries</div>
-            </div>
-            <hr className="w-[6vw] opacity-50 sm:w-[3vw]" />
-          </div>
-          <TechCard
-            title="Database"
-            basic={databaseStack}
-            more={databaseMoreStack}
-            extra={databaseExtraStack}
-            gradient="left"
-          />
-        </div>
+    <div ref={teckStackRef} className="sm:max-w-325">
+      <div className="p-5 text-4xl sm:p-0">
+        <span className="font-italianno text-6xl">Tech</span> Stack
       </div>
-      {/*<br />
-      <div className="mt-10 flex flex-col gap-3 px-5 text-center font-light tracking-wide opacity-80">
-        <div>
-          <span>Languages that I used before: </span>
-          <span className="font-zodiak block font-medium md:inline">
-            C++, Java, Kotlin, Dart, Flutter
-          </span>
-        </div>
-        <div>
-          <span>Languages that I am intrested in: </span>
-          <span className="font-zodiak font-medium">Go</span>
-        </div>
-      </div>*/}
+      <br />
 
-      <ToolsStack />
-    </>
+      <div className="m-auto flex w-fit items-center gap-5 text-5xl opacity-90 md:text-7xl">
+        <IconReact title="React" />
+        <hr className="w-[5vw]" />
+        <IconNestJs title="NestJS" />
+        <hr className="w-[5vw]" />
+        <IconDatabase title="Different Database Types" />
+      </div>
+      <br />
+      <br />
+
+      <div className="tech-cards flex h-full w-screen overflow-auto px-5">
+        <TechCard
+          title="Frontend"
+          basic={frontendStack}
+          more={frontendMoreStack}
+          extra={frontendExtraStack}
+          gradient="right"
+          // className="opacity-0"
+        />
+        <div className="flex items-center opacity-0">
+          <hr className="w-[6vw] opacity-50 sm:w-[3vw]" />
+          <div className="text-center">
+            Rest API <div className="text-off-white/60 text-sm">GraphQL</div>
+          </div>
+          <hr className="w-[6vw] opacity-50 sm:w-[3vw]" />
+        </div>
+        <TechCard
+          title="Backend"
+          basic={backendStack}
+          more={backMoreStack}
+          gradient="center"
+          // className="opacity-0"
+        />
+        <div className="flex items-center opacity-0">
+          <hr className="w-[6vw] opacity-50 sm:w-[3vw]" />
+          <div className="text-center">
+            O
+            <span ref={ormOdm} className="relative">
+              <span className="opacity-0"> _ </span>
+              <span className="theR absolute left-[18%] opacity-0">R</span>
+              <span className="theD absolute left-[17%] opacity-0">D</span>
+            </span>
+            M / <div className="text-sm">Queries</div>
+          </div>
+          <hr className="w-[6vw] opacity-50 sm:w-[3vw]" />
+        </div>
+        <TechCard
+          title="Database"
+          basic={databaseStack}
+          more={databaseMoreStack}
+          extra={databaseExtraStack}
+          gradient="left"
+          // className="opacity-0"
+        />
+      </div>
+      <ToolsStack className="tools-stack" />
+    </div>
   );
 }
 
-function ToolsStack() {
+function ToolsStack({ className }: { className?: string }) {
   return (
-    <div className="mt-20 flex w-full flex-col justify-around gap-10 p-5 sm:mt-10">
+    <div
+      className={`mt-20 flex w-full flex-col justify-around gap-10 p-5 sm:mt-10 ${className}`}
+    >
       <div className="border-off-white/10 relative flex-1 rounded-2xl border p-5">
         <div className="font-zodiak mb-9 text-center text-2xl md:mb-5">
           Dev Tools
         </div>
         <div className="absolute right-7 bottom-7 flex text-7xl opacity-20 sm:hidden md:top-10 md:right-10">
-          <IconTools />
+          <IconDev />
         </div>
         <ul className="flex flex-col justify-center gap-5 md:list-none md:flex-row md:gap-10">
           <li>
@@ -184,7 +223,7 @@ function ToolsStack() {
         <div className="font-zodiak mb-9 text-center text-2xl md:mb-5">
           Design Tools
         </div>
-        <div className="absolute right-7 bottom-7 flex -rotate-90 text-7xl opacity-20 sm:hidden md:top-10 md:right-10">
+        <div className="absolute right-7 bottom-7 flex text-7xl opacity-20 sm:hidden md:top-10 md:right-10">
           <IconDesign />
         </div>
         <ul className="flex flex-col justify-center gap-5 md:list-none md:flex-row md:gap-10">
@@ -211,9 +250,17 @@ type TechStackProps = {
   more?: StackType[];
   extra?: StackType[];
   gradient?: "left" | "right" | "center";
+  className?: string;
 };
 
-function TechCard({ title, basic, more, extra, gradient }: TechStackProps) {
+function TechCard({
+  title,
+  basic,
+  more,
+  extra,
+  gradient,
+  className,
+}: TechStackProps) {
   const toLeft = "bg-linear-to-r from-bg-dark";
   const toCenter = "bg-linear-to-l from-bg-dark to-bg-dark via-bg-darker";
   const toRight = "bg-linear-to-l from-bg-dark";
@@ -223,7 +270,7 @@ function TechCard({ title, basic, more, extra, gradient }: TechStackProps) {
 
   return (
     <ShinyWrapper
-      className={`min-w-[85vw] rounded-2xl p-5 sm:min-w-[19vw] ${gradientDirection} border-off-white/10 border`}
+      className={`min-w-[85vw] rounded-2xl p-5 sm:min-w-[19vw] ${gradientDirection} ${className} border-off-white/10 border`}
       speed={6}
       direction={gradient !== "center" ? gradient : undefined}
       pauseOnHover={false}

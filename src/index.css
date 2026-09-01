@@ -94,4 +94,13 @@
   a {
     @apply text-blue-600 hover:underline;
   }
+
+  /* GSAP Starting opacity (commnet these if not using GSAP)*/
+
+  .location-info,
+  .tech-cards > *,
+  .tools-stack > * {
+    opacity: 0;
+    /*background-color: red;*/
+  }
 }
