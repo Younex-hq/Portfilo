@@ -137,17 +137,11 @@ export default function TechStack() {
       </div>
       <br />
 
-      <div className="m-auto flex w-fit items-center gap-5 text-5xl opacity-90 md:text-7xl">
-        <IconReact title="React" />
-        <hr className="w-[5vw]" />
-        <IconNestJs title="NestJS" />
-        <hr className="w-[5vw]" />
-        <IconDatabase title="Different Database Types" />
-      </div>
-      <br />
+      <FrameworkStack />
+
       <br />
 
-      <div className="tech-cards flex h-full w-screen overflow-auto px-5">
+      <div className="tech-cards mt-5 flex h-full w-screen overflow-auto px-5">
         <TechCard
           title="Frontend"
           basic={frontendStack}
@@ -200,9 +194,9 @@ export default function TechStack() {
 function ToolsStack({ className }: { className?: string }) {
   return (
     <div
-      className={`mt-20 flex w-full flex-col justify-around gap-10 p-5 sm:mt-10 ${className}`}
+      className={`mt-20 flex w-full flex-col justify-around gap-10 p-5 sm:mt-10 md:flex-row ${className}`}
     >
-      <div className="border-off-white/10 relative flex-1 rounded-2xl border p-5">
+      <div className="border-off-white/10 from-bg-dark via-bg-darker relative rounded-2xl border bg-linear-to-b p-5">
         <div className="font-zodiak mb-9 text-center text-2xl md:mb-5">
           Dev Tools
         </div>
@@ -219,7 +213,7 @@ function ToolsStack({ className }: { className?: string }) {
           </li>
         </ul>
       </div>
-      <div className="border-off-white/10 relative flex-1 rounded-2xl border p-5">
+      <div className="border-off-white/10 bg-linear-to-b from-bg-dark via-bg-darker relative flex-1 rounded-2xl border p-5">
         <div className="font-zodiak mb-9 text-center text-2xl md:mb-5">
           Design Tools
         </div>
@@ -237,7 +231,7 @@ function ToolsStack({ className }: { className?: string }) {
             <span className="font-light">Adobe</span> InDesign
           </li>
           <li>Figma / Penpot</li>
-          <li>Canva</li>
+          <li>Affinity by Canva</li>
         </ul>
       </div>
     </div>
@@ -329,5 +323,19 @@ function TechList({ icon, name }: StackType) {
         <span className="text-2xl">{icon}</span> <span>{name}</span>
       </li>
     </ul>
+  );
+}
+
+function FrameworkStack() {
+  return (
+    <>
+      <div className="m-auto flex w-fit items-center gap-5 text-5xl opacity-90 md:text-7xl">
+        <IconReact title="React" />
+        <hr className="w-[5vw]" />
+        <IconNestJs title="NestJS" />
+        <hr className="w-[5vw]" />
+        <IconDatabase title="Different Database Types" />
+      </div>
+    </>
   );
 }

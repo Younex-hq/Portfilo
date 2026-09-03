@@ -7,6 +7,7 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import TechStack from "./TechStack";
+import { Degrees } from "./Dgrees";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -24,6 +25,9 @@ export default function About() {
       </div>
       <div className="mt-[40%] flex flex-col md:mt-[20%]">
         <TechStack />
+      </div>
+      <div className="mt-[40%] flex flex-col md:mt-[20%]">
+        <Degrees />
       </div>
     </div>
   );
