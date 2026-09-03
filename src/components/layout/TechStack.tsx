@@ -1,25 +1,28 @@
-import type { StackType } from "../../data/TechStackData";
-import { frontendStack } from "../../data/TechStackData";
-import { frontendMoreStack } from "../../data/TechStackData";
-import { frontendExtraStack } from "../../data/TechStackData";
-
-import { backendStack } from "../../data/TechStackData";
-import { backMoreStack } from "../../data/TechStackData";
-
-import { databaseStack } from "../../data/TechStackData";
-import { databaseMoreStack } from "../../data/TechStackData";
-import { databaseExtraStack } from "../../data/TechStackData";
-
-import { FaReact as IconReact } from "react-icons/fa";
-import { SiNestjs as IconNestJs } from "react-icons/si";
-import { FaDatabase as IconDatabase } from "react-icons/fa";
-import { RxCode as IconDev } from "react-icons/rx";
-import { CiPen as IconDesign } from "react-icons/ci";
-
 import ShinyWrapper from "../common/ShinyWrapper";
+
 import { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
+
+import type { StackType } from "../../data/TechStackData";
+import {
+  frontendStack,
+  frontendMoreStack,
+  frontendExtraStack,
+  backendStack,
+  backMoreStack,
+  databaseStack,
+  databaseMoreStack,
+  databaseExtraStack,
+} from "../../data/TechStackData";
+
+import {
+  FaReact as IconReact,
+  FaDatabase as IconDatabase,
+} from "react-icons/fa";
+import { SiNestjs as IconNestJs } from "react-icons/si";
+import { RxCode as IconDev } from "react-icons/rx";
+import { CiPen as IconDesign } from "react-icons/ci";
 
 gsap.registerPlugin(useGSAP);
 
@@ -213,7 +216,7 @@ function ToolsStack({ className }: { className?: string }) {
           </li>
         </ul>
       </div>
-      <div className="border-off-white/10 bg-linear-to-b from-bg-dark via-bg-darker relative flex-1 rounded-2xl border p-5">
+      <div className="border-off-white/10 from-bg-dark via-bg-darker relative flex-1 rounded-2xl border bg-linear-to-b p-5">
         <div className="font-zodiak mb-9 text-center text-2xl md:mb-5">
           Design Tools
         </div>

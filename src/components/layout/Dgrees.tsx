@@ -2,16 +2,13 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import ShinyWrapper from "../common/ShinyWrapper";
 import {
   FaGraduationCap,
   FaLaptopCode,
   FaPaintBrush,
-  FaCalendarAlt,
   FaUniversity,
 } from "react-icons/fa";
 import { HiOutlineAcademicCap } from "react-icons/hi2";
-import ShinyText from "../common/ShinyText";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
