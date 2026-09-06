@@ -99,7 +99,7 @@ export function Degrees() {
           return (
             <div
               key={index}
-              className="group degree-card relative flex flex-col md:flex-row"
+              className="degree-card relative flex w-full md:w-[90%] flex-col md:flex-row"
             >
               {/* language */}
               <div
@@ -113,7 +113,7 @@ export function Degrees() {
                 <IconLanguage title="Change Language" />
               </div>
 
-              {/* Top Bar: Dates & Category Tag */}
+              {/* Dates & Category Tag */}
               <div className="border-off-white/10 from-bg-dark via-bg-darker relative flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-linear-to-br p-5">
                 <div className="text-off-white/80 flex items-center gap-2 text-sm">
                   <span className="font-medium tracking-wider" dir="ltr">

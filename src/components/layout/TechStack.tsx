@@ -197,7 +197,7 @@ export default function TechStack() {
 function ToolsStack({ className }: { className?: string }) {
   return (
     <div
-      className={`mt-20 flex w-full flex-col justify-around gap-10 p-5 sm:mt-10 md:flex-row ${className}`}
+      className={`mt-20 flex w-full flex-col justify-around gap-10 p-5 sm:mt-10 md:w-[90%] md:flex-row ${className}`}
     >
       <div className="border-off-white/10 from-bg-dark via-bg-darker relative rounded-2xl border-r border-b bg-linear-to-b p-5">
         <div className="font-zodiak mb-9 text-center text-2xl md:mb-5">

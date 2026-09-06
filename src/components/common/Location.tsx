@@ -67,7 +67,10 @@ export function Location() {
   );
 
   return (
-    <div ref={containerRef} className="relative overflow-hidden p-3 sm:p-0">
+    <div
+      ref={containerRef}
+      className="relative w-full overflow-hidden p-3 sm:w-[95%] sm:p-0"
+    >
       <div className="font-italianno text-4xl md:text-6xl">From</div>
       <div className="video-container relative h-[70vh] w-full">
         <VideoPlayer
