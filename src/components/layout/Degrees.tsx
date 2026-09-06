@@ -44,23 +44,62 @@ export function Degrees() {
     });
   };
 
+  const DegreesContainerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      gsap.from(".degree-title", {
+        autoAlpha: 0,
+        y: 100,
+        scale: 0.85,
+
+        scrollTrigger: {
+          trigger: ".degree-title",
+          start: "top 90%",
+          end: "top 70%",
+          immediateRender: false,
+          scrub: true,
+        },
+      });
+
+      gsap.from(".degree-card", {
+        autoAlpha: 0,
+        y: 100,
+        scale: 0.85,
+        stagger: 0.2,
+
+        scrollTrigger: {
+          trigger: ".degree-card",
+          start: "top 90%",
+          end: "top 60%",
+          immediateRender: false,
+          scrub: true,
+        },
+      });
+    },
+    { scope: containerRef },
+  );
+
   return (
     <div ref={containerRef} className="relative w-full px-4 sm:px-0">
       {/* Header */}
       <div className="mb-9 sm:mb-12">
-        <div className="text-3xl sm:text-4xl">
+        <div className="degree-title text-3xl sm:text-4xl">
           <span className="font-italianno text-6xl md:text-7xl">A</span>cademic{" "}
           <span className="font-italianno text-6xl md:text-7xl">B</span>
           ackground
         </div>
       </div>
 
-      <div className="relative flex flex-col gap-17 md:gap-10">
+      <div
+        ref={DegreesContainerRef}
+        className="relative flex flex-col gap-17 md:gap-10"
+      >
         {educationData[currentLang].map((item, index) => {
           return (
             <div
               key={index}
-              className="group relative flex flex-col md:flex-row"
+              className="group degree-card relative flex flex-col md:flex-row"
             >
               {/* language */}
               <div
