@@ -1,4 +1,5 @@
-import { FaLaptopCode, FaPaintBrush } from "react-icons/fa";
+import { RxCode as IconDev } from "react-icons/rx";
+import { CiPen as IconDesign } from "react-icons/ci";
 
 type edData = {
   language: string;
@@ -24,7 +25,7 @@ export const educationData: EducationItem = {
       specialization: "Web and Mobile Development",
       institute:
         "National Specialized Institute of Vocational Training, Mohammedia",
-      icon: <FaLaptopCode />,
+      icon: <IconDev />,
     },
     {
       language: "English",
@@ -33,7 +34,7 @@ export const educationData: EducationItem = {
       specialization: "Infographics and Graphic Design",
       institute:
         "National Specialized Institute of Graphic Arts and Industry (INSIAG), BMR",
-      icon: <FaPaintBrush />,
+      icon: <IconDesign />,
     },
   ],
   ar: [
@@ -43,7 +44,7 @@ export const educationData: EducationItem = {
       degree: "شهادة تقني سامي في اختصاص إعلام آلي",
       specialization: "مطور الواب والمحمول",
       institute: "المعهد الوطني المتخصص في التكوين المهني المحمدية",
-      icon: <FaLaptopCode />,
+      icon: <IconDev />,
     },
     {
       language: "Arabic",
@@ -52,7 +53,7 @@ export const educationData: EducationItem = {
       specialization: "مخطط معلوماتي ومصمم",
       institute:
         "المعهد الوطني المتخصص في الفنون والصناعات المطبعية BMR، الجزائر",
-      icon: <FaPaintBrush />,
+      icon: <IconDesign />,
     },
   ],
   fr: [
@@ -63,7 +64,7 @@ export const educationData: EducationItem = {
       specialization: "Développement Web et Mobile",
       institute:
         "Institut National Spécialisé de la Formation Professionnelle (INSFP), Mohammadia",
-      icon: <FaLaptopCode />,
+      icon: <IconDev />,
     },
     {
       language: "French",
@@ -72,7 +73,7 @@ export const educationData: EducationItem = {
       specialization: "Design Graphic, Infographie et Communication Visuelle",
       institute:
         "Institut National Spécialisé en Art et Industrie Graphique (INSIAG) BMR",
-      icon: <FaPaintBrush />,
+      icon: <IconDesign />,
     },
   ],
 };
