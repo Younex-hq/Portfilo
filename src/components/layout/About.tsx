@@ -7,7 +7,7 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import TechStack from "./TechStack";
-import { Degrees } from "./Dgrees";
+import { Degrees } from "./Degrees";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 

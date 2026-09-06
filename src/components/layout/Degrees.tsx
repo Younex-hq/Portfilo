@@ -2,42 +2,11 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import {
-  FaGraduationCap,
-  FaLaptopCode,
-  FaPaintBrush,
-  FaUniversity,
-} from "react-icons/fa";
+import { FaGraduationCap, FaUniversity } from "react-icons/fa";
 import { HiOutlineAcademicCap } from "react-icons/hi2";
-
+import { educationData } from "../../data/DegreesData";
+import { IoLanguage as IconLanguage } from "react-icons/io5";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
-
-type EducationItem = {
-  period: string;
-  degree: string;
-  institute: string;
-  fieldOfStudy: string;
-  icon: React.ReactNode;
-};
-
-const educationData: EducationItem[] = [
-  {
-    period: "02/2023 → 10/2025",
-    degree: "Higher Technician Diploma in Computer Science",
-    institute:
-      "Boucenna Mohamed Tayeb National Vocational Training Institute (INSFP)",
-    fieldOfStudy: "Web and Mobile Development",
-    icon: <FaLaptopCode />,
-  },
-  {
-    period: "09/2017 → 02/2020",
-    degree: "Advanced Technician Diploma in Graphic Design",
-    institute:
-      "Institut National Spécialisé en Art et Industrie Graphique (INSIAG) BMR, Algiers, Algeria",
-    fieldOfStudy: "Graphic Design and Visual Communication",
-    icon: <FaPaintBrush />,
-  },
-];
 
 export function Degrees() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -54,12 +23,16 @@ export function Degrees() {
       </div>
 
       <div className="relative flex flex-col gap-8 md:gap-10">
-        {educationData.map((item, index) => {
+        {educationData.eng.map((item, index) => {
           return (
             <div
               key={index}
               className="group relative flex flex-col md:flex-row"
             >
+              <div className="absolute top-5 right-0 z-10 opacity-70 hover:cursor-pointer hover:opacity-100">
+                <IconLanguage />
+              </div>
+
               {/* Top Bar: Dates & Category Tag */}
               <div className="border-off-white/10 from-bg-dark via-bg-darker relative flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-linear-to-br p-5">
                 <div className="text-off-white/80 flex items-center gap-2 text-sm">
@@ -81,7 +54,7 @@ export function Degrees() {
                     <HiOutlineAcademicCap className="text-sm" /> Specialization
                   </span>
                   <h3 className="text-off-white/90 font-bold">
-                    {item.fieldOfStudy}
+                    {item.specialization}
                   </h3>
                 </div>
 
