@@ -113,20 +113,35 @@ export default function TechStack() {
               stagger: 0.2,
               delay: -0.2,
             },
-          ).fromTo(
-            ".tools-stack > *",
-            {
-              y: -100,
-              autoAlpha: 0,
-              scale: 0.85,
-            },
-            {
-              y: 0,
-              autoAlpha: 1,
-              scale: 1,
-              stagger: 0.2,
-            },
-          );
+          )
+            .fromTo(
+              ".tools-stack > *",
+              {
+                y: -100,
+                autoAlpha: 0,
+                scale: 0.85,
+              },
+              {
+                y: 0,
+                autoAlpha: 1,
+                scale: 1,
+                stagger: 0.2,
+              },
+            )
+            .fromTo(
+              ".AdditionalTechInfo",
+              {
+                y: 100,
+                autoAlpha: 0,
+                scale: 0.85,
+              },
+              {
+                y: 0,
+                autoAlpha: 1,
+                scale: 1,
+                stagger: 0.2,
+              },
+            );
         },
       });
     },
@@ -193,51 +208,69 @@ export default function TechStack() {
     </div>
   );
 }
+function AdditionalTechInfo({ className }: { className?: string }) {
+  return (
+    <div
+      className={`font- m-auto p-5 text-center tracking-wide ${className} text-off-white/90`}
+    >
+      My programming journey started with learning the basics of programming
+      concepts with <b>C++</b>,<br />
+      Learned OOP with <b>Java</b>, then <b>HTML, CSS, JS</b> for web pages,{" "}
+      <b>PHP</b> to interact with databases (I started with <b>MySQL</b>),
+      <br /> now I'm taking my <b>TypeScript</b> skills to another level, and
+      learning <b>Go</b>lang on the side
+    </div>
+  );
+}
 
 function ToolsStack({ className }: { className?: string }) {
   return (
-    <div
-      className={`mt-20 flex w-full flex-col justify-around gap-10 p-5 sm:mt-10 md:w-[90%] md:flex-row ${className}`}
-    >
-      <div className="border-off-white/10 from-bg-dark via-bg-darker relative rounded-2xl border-r border-b bg-linear-to-b p-5">
-        <div className="font-zodiak mb-9 text-center text-2xl md:mb-5">
-          Dev Tools
+    <>
+      <div
+        className={`mt-20 flex w-full flex-col justify-around gap-10 p-5 sm:mt-10 md:w-[90%] md:flex-row ${className}`}
+      >
+        <div className="border-off-white/10 from-bg-dark via-bg-darker relative rounded-2xl border-r border-b bg-linear-to-b p-5">
+          <div className="font-zodiak mb-9 text-center text-2xl md:mb-5">
+            Dev Tools
+          </div>
+          <div className="absolute right-7 bottom-7 flex text-7xl opacity-20 sm:hidden md:top-10 md:right-10">
+            <IconDev />
+          </div>
+          <ul className="flex flex-col justify-center gap-5 md:list-none md:flex-row md:gap-10">
+            <li>
+              Git <span className="opacity-70">/ GitHub...</span>
+            </li>
+            <li>Docker</li>
+            <li>
+              Vim <span className="opacity-70">/ Neovim</span>
+            </li>
+          </ul>
         </div>
-        <div className="absolute right-7 bottom-7 flex text-7xl opacity-20 sm:hidden md:top-10 md:right-10">
-          <IconDev />
+        <div className="border-off-white/10 from-bg-dark via-bg-darker relative rounded-2xl border-r border-b bg-linear-to-b p-5">
+          <div className="font-zodiak mb-9 text-center text-2xl md:mb-5">
+            Design Tools
+          </div>
+          <div className="absolute right-7 bottom-7 flex text-7xl opacity-20 sm:hidden md:top-10 md:right-10">
+            <IconDesign />
+          </div>
+          <ul className="flex flex-col justify-center gap-5 md:list-none md:flex-row md:gap-10">
+            <li>
+              <span className="font-light">Adobe</span> Photoshop
+            </li>
+            <li>
+              <span className="font-light">Adobe</span> Illustrator
+            </li>
+            <li>
+              <span className="font-light">Adobe</span> InDesign
+            </li>
+            <li>Figma / Penpot</li>
+            <li>Affinity by Canva</li>
+          </ul>
         </div>
-        <ul className="flex flex-col justify-center gap-5 md:list-none md:flex-row md:gap-10">
-          <li>
-            Git <span className="opacity-70">/ GitHub...</span>
-          </li>
-          <li>Docker</li>
-          <li>
-            Vim <span className="opacity-70">/ Neovim</span>
-          </li>
-        </ul>
       </div>
-      <div className="border-off-white/10 from-bg-dark via-bg-darker relative rounded-2xl border-r border-b bg-linear-to-b p-5">
-        <div className="font-zodiak mb-9 text-center text-2xl md:mb-5">
-          Design Tools
-        </div>
-        <div className="absolute right-7 bottom-7 flex text-7xl opacity-20 sm:hidden md:top-10 md:right-10">
-          <IconDesign />
-        </div>
-        <ul className="flex flex-col justify-center gap-5 md:list-none md:flex-row md:gap-10">
-          <li>
-            <span className="font-light">Adobe</span> Photoshop
-          </li>
-          <li>
-            <span className="font-light">Adobe</span> Illustrator
-          </li>
-          <li>
-            <span className="font-light">Adobe</span> InDesign
-          </li>
-          <li>Figma / Penpot</li>
-          <li>Affinity by Canva</li>
-        </ul>
-      </div>
-    </div>
+
+      <AdditionalTechInfo className="AdditionalTechInfo" />
+    </>
   );
 }
 
