@@ -218,7 +218,13 @@ function AdditionalTechInfo({ className }: { className?: string }) {
       Learned OOP with <b>Java</b>, then <b>HTML, CSS, JS</b> for web pages,{" "}
       <b>PHP</b> to interact with databases (I started with <b>MySQL</b>),
       <br /> now I'm taking my <b>TypeScript</b> skills to another level, and
-      learning <b>Go</b>lang on the side
+      learning <b>Go</b>lang on the side <br className="hidden sm:inline" />{" "}
+      <span className="opacity-70">
+        <i>
+          (my home server is weak and one Node app is taking all the resources,
+          so for now I'm intrested in Go for better efficiency)
+        </i>
+      </span>
     </div>
   );
 }

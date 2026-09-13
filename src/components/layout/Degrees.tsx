@@ -93,7 +93,7 @@ export function Degrees() {
 
       <div
         ref={DegreesContainerRef}
-        className="relative flex flex-col gap-17 md:gap-10"
+        className="relative flex flex-col gap-17 md:gap-10 md:mx-5"
       >
         {educationData[currentLang].map((item, index) => {
           return (
