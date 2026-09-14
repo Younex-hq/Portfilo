@@ -93,13 +93,13 @@ export function Degrees() {
 
       <div
         ref={DegreesContainerRef}
-        className="relative flex flex-col gap-17 md:gap-10 md:mx-5"
+        className="relative flex flex-col gap-17 md:mx-5 md:gap-10"
       >
         {educationData[currentLang].map((item, index) => {
           return (
             <div
               key={index}
-              className="degree-card relative flex w-full md:w-[90%] flex-col md:flex-row"
+              className="degree-card relative flex w-full flex-col md:w-[90%] md:flex-row"
             >
               {/* language */}
               <div
@@ -119,7 +119,7 @@ export function Degrees() {
                   <span className="font-medium tracking-wider" dir="ltr">
                     {item.period}
                   </span>
-                  <div className="absolute top-1/2 left-1/2 hidden -translate-1/2 text-9xl opacity-30 sm:block">
+                  <div className="absolute top-1/2 left-1/2 hidden -translate-1/2 text-9xl opacity-30 md:block">
                     {item.icon}
                   </div>
                 </div>
