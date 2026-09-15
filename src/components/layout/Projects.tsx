@@ -17,10 +17,11 @@ export default function Projects() {
         <div className="md:mx-5">
           {ProjectsData.map((pd) => (
             <ProjectCard
-              key={pd.title}
+              key={pd.id}
+              id={pd.id}
               title={pd.title}
               description={pd.description}
-              target={pd.target}
+              client={pd.client}
               thumbnail={pd.thumbnail}
               screenshots={pd.screenshots}
               tech={pd.tech}
@@ -37,7 +38,7 @@ export default function Projects() {
 function ProjectCard({
   title,
   description,
-  target,
+  client,
   thumbnail,
   screenshots,
   tech,
@@ -57,7 +58,7 @@ function ProjectCard({
 
   return (
     <div
-      className={`border-off-white/10 hover:border-off-white/30 relative overflow-hidden rounded-2xl border p-2 sm:w-full sm:p-5 ${expanded ? "border-off-white/20 shadow-2xl" : "cursor-pointer"}`}
+      className={`border-off-white/10 hover:border-off-white/30 relative mb-5 overflow-hidden rounded-2xl border border-b-2 p-2 sm:w-full sm:p-5 ${expanded ? "border-off-white/20 shadow-2xl" : "cursor-pointer"}`}
       onClick={() => setExpanded((prev) => !prev)}
     >
       <div className="flex justify-between gap-5">
@@ -67,7 +68,7 @@ function ProjectCard({
               {title}
             </div>
             <div className="font-light opacity-70">
-              for <span>{target}</span>
+              for <span>{client}</span>
             </div>
           </div>
           <div
@@ -76,10 +77,12 @@ function ProjectCard({
             {description}
           </div>
         </div>
-        <div className="absolute top-0 left-0 -z-10 w-full flex-1 overflow-hidden rounded-tr-2xl opacity-50 sm:relative sm:opacity-100">
+        <div
+          className={`absolute top-0 left-0 -z-10 w-full flex-1 overflow-hidden rounded-2xl opacity-50 sm:relative sm:opacity-100 `}
+        >
           <img
             src={thumbnail}
-            className="h-full w-full object-cover [-webkit-mask-image:linear-gradient(to_bottom,black,transparent)] sm:mask-x-to-white"
+            className={`h-full w-full object-cover [-webkit-mask-image:linear-gradient(to_bottom,black,transparent)] ${expanded ? "" : "sm:[-webkit-mask-image:linear-gradient(to_left,black,transparent)]" } `}
           />
         </div>
       </div>
@@ -152,7 +155,7 @@ function ProjectCard({
                     <a
                       href={l.url}
                       className="text-off-white flex items-center gap-2"
-                      target="_blank"
+                      client="_blank"
                       onClick={(e) => e.stopPropagation()} // to not close the card when clickning on the anchor
                     >
                       <span className="text-xl">{l.icon}</span>
