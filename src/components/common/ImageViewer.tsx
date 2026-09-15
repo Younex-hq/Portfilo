@@ -70,7 +70,10 @@ export const ImageViewer: React.FC<ImageViewerProps> = ({
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm transition-opacity"
-      onClick={onClose}
+      onClick={(e) => {
+        e.stopPropagation();
+        onClose();
+      }}
       role="dialog"
       aria-modal="true"
     >
@@ -86,7 +89,10 @@ export const ImageViewer: React.FC<ImageViewerProps> = ({
           </span>
           <button
             type="button"
-            onClick={onClose}
+            onClick={(e) => {
+              e.stopPropagation();
+              onClose();
+            }}
             className="rounded-full bg-black/50 p-2 text-white/80 transition-colors hover:bg-black/80 hover:text-white focus:ring-2 focus:ring-white/50 focus:outline-none"
             aria-label="Close image viewer"
           >

@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { type ProjectData, ProjectsData } from "../../data/ProjectsData";
 import { ImageViewer } from "../common/ImageViewer";
+import ShinyText from "../common/ShinyText";
 
 export default function Projects() {
   return (
     <>
-      <div className="relative m-auto mt-[35%] w-full max-w-325 px-4 sm:px-0 md:mt-[10%]">
+      <div className="relative m-auto mt-[35%] w-screen max-w-325 px-2 sm:px-4 md:mt-[10%] md:w-full">
         {/* Header */}
         <div className="mb-9 sm:mb-12">
           <div className="degree-title text-3xl sm:text-4xl">
@@ -24,6 +25,7 @@ export default function Projects() {
               screenshots={pd.screenshots}
               tech={pd.tech}
               links={pd.links}
+              features={pd.features}
             />
           ))}
         </div>
@@ -40,80 +42,130 @@ function ProjectCard({
   screenshots,
   tech,
   links,
+  features,
 }: ProjectData) {
   const [selectedSecreenshot, setSelectedSecreenshot] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
 
-  const screenshothandler = (imgIndex: number) => {
+  const screenshothandler = (e: React.MouseEvent, imgIndex: number) => {
+    e.stopPropagation(); // prevent card from closing when clicking on the screenshot
     setSelectedSecreenshot(imgIndex);
     setIsOpen((prev) => !prev);
   };
 
+  const [expanded, setExpanded] = useState(false);
+
   return (
-    <div className="border-off-white/10 rounded-2xl border p-5">
+    <div
+      className={`border-off-white/10 hover:border-off-white/30 relative overflow-hidden rounded-2xl border p-2 sm:w-full sm:p-5 ${expanded ? "border-off-white/20 shadow-2xl" : "cursor-pointer"}`}
+      onClick={() => setExpanded((prev) => !prev)}
+    >
       <div className="flex justify-between gap-5">
         <div className="flex flex-1 flex-col justify-between">
-          <div className="font-zodiak text-2xl tracking-wide">{title}</div>
-          <div>{description}</div>
-          <div className="flex justify-between">
-            <div className="opacity-70">
+          <div>
+            <div className="font-zodiak text-2xl font-bold tracking-wide">
+              {title}
+            </div>
+            <div className="font-light opacity-70">
               for <span>{target}</span>
             </div>
           </div>
+          <div
+            className={`mt-[5vh] ${expanded ? "" : "line-clamp-3 opacity-80 md:line-clamp-none"}`}
+          >
+            {description}
+          </div>
         </div>
-        <div className="flex-1 overflow-hidden rounded-tr-2xl">
-          <img src={thumbnail} />
+        <div className="absolute top-0 left-0 -z-10 w-full flex-1 overflow-hidden rounded-tr-2xl opacity-50 sm:relative sm:opacity-100">
+          <img
+            src={thumbnail}
+            className="h-full w-full object-cover [-webkit-mask-image:linear-gradient(to_bottom,black,transparent)] sm:mask-x-to-white"
+          />
         </div>
       </div>
 
       {/* # expended content */}
-      <div>
-        <div className="relative">
-          {/*<div>Screenshots</div>*/}
-          <div className="mt-5 flex gap-2">
-            {screenshots?.map((pic, index) => (
-              <div
-                key={index}
-                className="border-off-white/10 hover:shadow-off-white/10 aspect-video flex-1 overflow-hidden rounded-2xl border hover:shadow-xl"
-                onClick={() => screenshothandler(index)}
-                style={{ cornerShape: "squircle" }}
-              >
-                <img
-                  src={pic}
-                  className="h-full w-full scale-105 cursor-pointer object-cover hover:scale-100"
-                />
-              </div>
-            ))}
+      {expanded && (
+        <div>
+          <div className="relative">
+            {/*<div>Screenshots</div>*/}
+            <div className="mt-5 flex gap-2 overflow-scroll sm:overflow-auto">
+              {/* TODO: add magnatic effect to the image scroll on mobile view */}
+
+              {screenshots?.map((pic, index) => (
+                <div
+                  key={index}
+                  className="border-off-white/10 aspect-video min-w-[80vw] flex-1 overflow-hidden rounded-2xl border sm:min-w-0"
+                  onClick={(e) => screenshothandler(e, index)}
+                  style={{ cornerShape: "squircle" }}
+                >
+                  <img
+                    src={pic}
+                    className="h-full w-full scale-105 cursor-pointer object-cover hover:scale-100"
+                  />
+                </div>
+              ))}
+            </div>
+            {screenshots && (
+              <ImageViewer
+                images={screenshots}
+                currentIndex={selectedSecreenshot}
+                isOpen={isOpen}
+                onClose={() => setIsOpen(false)}
+                onIndexChange={(newIndex) => setSelectedSecreenshot(newIndex)}
+              />
+            )}
           </div>
-          {screenshots && (
-            <ImageViewer
-              images={screenshots}
-              currentIndex={selectedSecreenshot}
-              isOpen={isOpen}
-              onClose={() => setIsOpen(false)}
-              onIndexChange={(newIndex) => setSelectedSecreenshot(newIndex)}
-            />
+          <div className="my-5 flex flex-col justify-between md:flex-row">
+            {features && (
+              <div className="flex-2">
+                <div className="py-5 text-xl font-bold tracking-wide">
+                  Features
+                </div>
+                <ul>
+                  {features.map((feature) => (
+                    <li className="py-1">{feature}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            <div className="md:border-off-white/20 mt-auto flex-1 pt-5 sm:p-5 md:border-l">
+              <div className="hidden text-xl font-bold">Tech Used</div>
+              {tech?.map((t, index) => (
+                <div className="flex gap-5 py-1 pl-2 md:pl-2">
+                  <span className="text-xl">{t.icon}</span>
+                  <span
+                    className={`${index === 0 || index === 1 ? "font-semibold" : ""}`}
+                  >
+                    {t.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+          {links && (
+            <div className="justify-around">
+              <div className="py-5 text-xl font-bold tracking-wide">Links</div>
+              <div className="flex justify-around gap-5 sm:justify-start">
+                {links?.map((l) => (
+                  <div className="flex gap-3">
+                    <a
+                      href={l.url}
+                      className="text-off-white flex items-center gap-2"
+                      target="_blank"
+                      onClick={(e) => e.stopPropagation()} // to not close the card when clickning on the anchor
+                    >
+                      <span className="text-xl">{l.icon}</span>
+                      <ShinyText text={l.name} />
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
           )}
+          <br />
         </div>
-        <div className="">
-          <div>Tech Used</div>
-          {tech?.map((t) => (
-            <div className="flex gap-5">
-              <span>{t.icon}</span>
-              <span>{t.name}</span>
-            </div>
-          ))}
-        </div>
-        <div className="flex justify-around">
-          {links?.map((l) => (
-            <div className="flex gap-3">
-              <div>{l.icon}</div>
-              <div>{l.name}</div>
-              <div>{l.url}</div>
-            </div>
-          ))}
-        </div>
-      </div>
+      )}
     </div>
   );
 }
