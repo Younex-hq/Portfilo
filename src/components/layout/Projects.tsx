@@ -1,20 +1,62 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
 import { type ProjectData, ProjectsData } from "../../data/ProjectsData";
 import { ImageViewer } from "../common/ImageViewer";
 import ShinyText from "../common/ShinyText";
 
 export default function Projects() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      gsap.from(".project", {
+        autoAlpha: 0,
+        y: 100,
+        scale: 0.85,
+
+        scrollTrigger: {
+          trigger: ".project",
+          start: "top bottom",
+          end: "top 80%",
+          immediateRender: false,
+          scrub: true,
+        },
+      });
+
+      gsap.utils.toArray(".project-card > *").forEach((card: any) => {
+        gsap.from(card, {
+          autoAlpha: 0,
+          y: 100,
+          scale: 0.85,
+
+          scrollTrigger: {
+            trigger: card,
+            start: "top 90%",
+            end: "top 60%",
+            immediateRender: false,
+            scrub: true,
+          },
+        });
+      });
+    },
+    { scope: containerRef },
+  );
+
   return (
     <>
-      <div className="relative m-auto mt-[35%] w-screen max-w-325 px-2 sm:px-4 md:mt-[10%] md:w-full">
+      <div
+        ref={containerRef}
+        className="relative m-auto mt-[35%] w-screen max-w-325 px-2 sm:px-4 md:mt-[10%] md:w-full"
+      >
         {/* Header */}
         <div className="mb-9 sm:mb-12">
-          <div className="degree-title text-3xl sm:text-4xl">
+          <div className="project degree-title text-3xl sm:text-4xl">
             <span className="font-italianno text-6xl md:text-7xl">P</span>
             rojects
           </div>
         </div>
-        <div className="md:mx-5">
+        <div className="project-card md:mx-5">
           {ProjectsData.map((pd) => (
             <ProjectCard
               key={pd.id}
@@ -58,13 +100,13 @@ function ProjectCard({
 
   return (
     <div
-      className={`border-off-white/10 hover:border-off-white/30 relative mb-5 overflow-hidden rounded-2xl border border-b-2 p-2 sm:w-full sm:p-5 ${expanded ? "border-off-white/20 shadow-2xl" : "cursor-pointer"}`}
+      className={`border-off-white/10 hover:border-off-white/30 relative mb-5 overflow-hidden rounded-2xl border border-b-2 p-2 sm:w-full sm:p-5 ${expanded ? "border-off-white/20 shadow-xl shadow-gray-500/10" : "cursor-pointer"}`}
       onClick={() => setExpanded((prev) => !prev)}
     >
       <div className="flex justify-between gap-5">
         <div className="flex flex-1 flex-col justify-between">
           <div>
-            <div className="font-zodiak text-2xl font-bold tracking-wide">
+            <div className="font-zodiak mt-[50%] text-2xl font-bold tracking-wide sm:mt-0">
               {title}
             </div>
             <div className="font-light opacity-70">
@@ -78,18 +120,22 @@ function ProjectCard({
           </div>
         </div>
         <div
-          className={`absolute top-0 left-0 -z-10 w-full flex-1 overflow-hidden rounded-2xl opacity-50 sm:relative sm:opacity-100 `}
+          className={`absolute top-0 left-0 -z-10 w-full flex-1 overflow-hidden rounded-2xl opacity-50 sm:relative sm:opacity-100`}
         >
           <img
             src={thumbnail}
-            className={`h-full w-full object-cover [-webkit-mask-image:linear-gradient(to_bottom,black,transparent)] ${expanded ? "" : "sm:[-webkit-mask-image:linear-gradient(to_left,black,transparent)]" } `}
+            className={`h-full w-full object-cover [-webkit-mask-image:linear-gradient(to_bottom,black,transparent)] ${expanded ? "" : "sm:[-webkit-mask-image:linear-gradient(to_left,black,transparent)]"} `}
           />
         </div>
       </div>
 
       {/* # expended content */}
-      {expanded && (
-        <div>
+      <div
+        className={`grid transition-[grid-template-rows] duration-500 ease-in-out ${
+          expanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        }`}
+      >
+        <div className={`overflow-hidden transition-opacity duration-500 ${expanded ? "opacity-100" : "opacity-0"}`}>
           <div className="relative">
             {/*<div>Screenshots</div>*/}
             <div className="mt-5 flex gap-2 overflow-scroll sm:overflow-auto">
@@ -104,7 +150,7 @@ function ProjectCard({
                 >
                   <img
                     src={pic}
-                    className="h-full w-full scale-105 cursor-pointer object-cover hover:scale-100"
+                    className="h-full w-full scale-105 cursor-pointer object-cover hover:scale-100 transition-transform duration-300"
                   />
                 </div>
               ))}
@@ -126,8 +172,8 @@ function ProjectCard({
                   Features
                 </div>
                 <ul>
-                  {features.map((feature) => (
-                    <li className="py-1">{feature}</li>
+                  {features.map((feature, i) => (
+                    <li key={i} className="py-1">{feature}</li>
                   ))}
                 </ul>
               </div>
@@ -135,7 +181,7 @@ function ProjectCard({
             <div className="md:border-off-white/20 mt-auto flex-1 pt-5 sm:p-5 md:border-l">
               <div className="hidden text-xl font-bold">Tech Used</div>
               {tech?.map((t, index) => (
-                <div className="flex gap-5 py-1 pl-2 md:pl-2">
+                <div key={index} className="flex gap-5 py-1 pl-2 md:pl-2">
                   <span className="text-xl">{t.icon}</span>
                   <span
                     className={`${index === 0 || index === 1 ? "font-semibold" : ""}`}
@@ -150,12 +196,12 @@ function ProjectCard({
             <div className="justify-around">
               <div className="py-5 text-xl font-bold tracking-wide">Links</div>
               <div className="flex justify-around gap-5 sm:justify-start">
-                {links?.map((l) => (
-                  <div className="flex gap-3">
+                {links?.map((l, index) => (
+                  <div key={index} className="flex gap-3">
                     <a
                       href={l.url}
                       className="text-off-white flex items-center gap-2"
-                      client="_blank"
+                      target="_blank"
                       onClick={(e) => e.stopPropagation()} // to not close the card when clickning on the anchor
                     >
                       <span className="text-xl">{l.icon}</span>
@@ -168,7 +214,7 @@ function ProjectCard({
           )}
           <br />
         </div>
-      )}
+      </div>
     </div>
   );
 }

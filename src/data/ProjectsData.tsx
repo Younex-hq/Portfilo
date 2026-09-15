@@ -16,6 +16,7 @@ import {
   SiPwa as IconPwa,
 } from "react-icons/si";
 import { IoLogoVercel as IconVercel } from "react-icons/io5";
+import { IoIosGitNetwork as IconRestApi } from "react-icons/io";
 import { LuEarth as IconEarth } from "react-icons/lu";
 import { HiOutlineCircleStack as IconDatabase } from "react-icons/hi2";
 import { GrMysql as IconMysql } from "react-icons/gr";
@@ -56,7 +57,7 @@ export const ProjectsData: ProjectData[] = [
     tech: [
       { icon: <IconReact />, name: "React" },
       { icon: <IconLaravel />, name: "Laravel" },
-      { icon: <IconEarth />, name: "REST API" },
+      { icon: <IconRestApi />, name: "REST API" },
       { icon: <IconMysql />, name: "MySQL" },
       { icon: <IconTailwindcss />, name: "Tailwind CSS" },
       { icon: <IconShadcn />, name: "shadcn/ui" },
