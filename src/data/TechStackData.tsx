@@ -18,6 +18,7 @@ import { FaLaravel as IconLaravel } from "react-icons/fa6";
 import { GrMysql as IconMySQL } from "react-icons/gr";
 import { PiVectorThreeFill as IconVector } from "react-icons/pi";
 import { RiTailwindCssFill as IconTailwindCSS } from "react-icons/ri";
+import { HiOutlineCircleStack as IconDatabase } from "react-icons/hi2";
 
 export type StackType = {
   icon: React.JSX.Element;
@@ -93,6 +94,10 @@ export const databaseStack: StackType[] = [
   {
     icon: <IconPostgreSQL />,
     name: "PostgreSQL",
+  },
+  {
+    icon: <IconDatabase />,
+    name: "IndexedDB",
   },
 ];
 
