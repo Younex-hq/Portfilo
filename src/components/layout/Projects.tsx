@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { type ProjectData, ProjectsData } from "../../data/ProjectsData";
@@ -7,6 +7,7 @@ import ShinyText from "../common/ShinyText";
 
 export default function Projects() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [activeCardId, setActiveCardId] = useState<string | number | null>(null);
 
   useGSAP(
     () => {
@@ -69,6 +70,8 @@ export default function Projects() {
               tech={pd.tech}
               links={pd.links}
               features={pd.features}
+              isExpanded={activeCardId === pd.id}
+              onToggle={() => setActiveCardId(activeCardId === pd.id ? null : pd.id)}
             />
           ))}
         </div>
@@ -76,6 +79,11 @@ export default function Projects() {
     </>
   );
 }
+
+type ProjectCardProps = ProjectData & {
+  isExpanded: boolean;
+  onToggle: () => void;
+};
 
 function ProjectCard({
   title,
@@ -86,7 +94,9 @@ function ProjectCard({
   tech,
   links,
   features,
-}: ProjectData) {
+  isExpanded,
+  onToggle,
+}: ProjectCardProps) {
   const [selectedSecreenshot, setSelectedSecreenshot] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -96,12 +106,21 @@ function ProjectCard({
     setIsOpen((prev) => !prev);
   };
 
-  const [expanded, setExpanded] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isExpanded && cardRef.current) {
+      setTimeout(() => {
+        cardRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 300);
+    }
+  }, [isExpanded]);
 
   return (
     <div
-      className={`border-off-white/10 hover:border-off-white/30 relative mb-5 overflow-hidden rounded-2xl border border-b-2 p-2 sm:w-full sm:p-5 ${expanded ? "border-off-white/20 shadow-xl shadow-gray-500/10" : "cursor-pointer"}`}
-      onClick={() => setExpanded((prev) => !prev)}
+      ref={cardRef}
+      className={`border-off-white/10 hover:border-off-white/30 relative mb-5 overflow-hidden rounded-2xl border border-b-2 p-2 sm:w-full sm:p-5 ${isExpanded ? "border-off-white/20 shadow-xl shadow-gray-500/10" : "cursor-pointer"}`}
+      onClick={onToggle}
     >
       <div className="flex justify-between gap-5">
         <div className="flex flex-1 flex-col justify-between">
@@ -114,7 +133,7 @@ function ProjectCard({
             </div>
           </div>
           <div
-            className={`mt-[5vh] ${expanded ? "" : "line-clamp-3 opacity-80 md:line-clamp-none"}`}
+            className={`mt-[5vh] ${isExpanded ? "" : "line-clamp-3 opacity-80 md:line-clamp-none"}`}
           >
             {description}
           </div>
@@ -124,7 +143,7 @@ function ProjectCard({
         >
           <img
             src={thumbnail}
-            className={`h-full w-full object-cover [-webkit-mask-image:linear-gradient(to_bottom,black,transparent)] ${expanded ? "" : "sm:[-webkit-mask-image:linear-gradient(to_left,black,transparent)]"} `}
+            className={`h-full w-full object-cover [-webkit-mask-image:linear-gradient(to_bottom,black,transparent)] ${isExpanded ? "" : "sm:[-webkit-mask-image:linear-gradient(to_left,black,transparent)]"} `}
           />
         </div>
       </div>
@@ -132,10 +151,10 @@ function ProjectCard({
       {/* # expended content */}
       <div
         className={`grid transition-[grid-template-rows] duration-500 ease-in-out ${
-          expanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+          isExpanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
         }`}
       >
-        <div className={`overflow-hidden transition-opacity duration-500 ${expanded ? "opacity-100" : "opacity-0"}`}>
+        <div className={`overflow-hidden transition-opacity duration-500 ${isExpanded ? "opacity-100" : "opacity-0"}`}>
           <div className="relative">
             {/*<div>Screenshots</div>*/}
             <div className="mt-5 flex gap-2 overflow-scroll sm:overflow-auto">
