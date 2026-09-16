@@ -224,7 +224,9 @@ function ProjectCard({
           </div>
           {links && (
             <div className="justify-around">
-              <div className="py-5 text-xl font-bold tracking-wide">Links</div>
+              <div className="py-5 text-center text-xl font-bold tracking-wide sm:text-start">
+                Links
+              </div>
               <div className="flex justify-around gap-5 sm:justify-start">
                 {links?.map((l, index) => (
                   <div key={index} className="flex gap-3">

@@ -209,7 +209,7 @@ export const ProjectsData: ProjectData[] = [
     id: 5,
     title: "AudioMark | Timestamped Audio Notes",
     description:
-      "A privacy-first web application for taking structured notes while listening to audio. AudioMark lets users create timestamped markers, attach notes to precise moments, export and import annotations, and resume listening sessions without uploading their audio or annotations to a server.",
+      "A privacy-first web application for taking structured notes while listening to audio. AudioMark lets users create timestamped markers, attach notes to precise moments, export and import annotations, and resume listening sessions without uploading their audio or annotations to a server. (this is an Alpha build)",
     client: "Personal Project",
     thumbnail: audioMark,
     screenshots: [
