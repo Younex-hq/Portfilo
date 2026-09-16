@@ -1,4 +1,5 @@
 import React, { useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 
 export interface ImageViewerProps {
   /** Array of image URLs or image objects */
@@ -67,7 +68,7 @@ export const ImageViewer: React.FC<ImageViewerProps> = ({
   const currentSrc = images[currentIndex];
   const currentAlt = alts[currentIndex] ?? `Screenshot ${currentIndex + 1}`;
 
-  return (
+  return createPortal(
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm transition-opacity"
       onClick={(e) => {
@@ -169,6 +170,7 @@ export const ImageViewer: React.FC<ImageViewerProps> = ({
           </button>
         )}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
