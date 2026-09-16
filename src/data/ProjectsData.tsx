@@ -22,6 +22,19 @@ import { HiOutlineCircleStack as IconDatabase } from "react-icons/hi2";
 import { GrMysql as IconMysql } from "react-icons/gr";
 import { FaRegClosedCaptioning as IconCloseCaption } from "react-icons/fa6";
 
+import boaThumbnail from "@/assets/images/projects/boa-search/thumbnail.webp";
+import audioMark from "@/assets/images/projects/audio-mark/thumbnail.avif";
+import gengoLura from "@/assets/images/projects/gengo-lura/thumbnail.avif";
+import nyanya from "@/assets/images/projects/nyanya/thumbnail.avif";
+import tutoPlayer from "@/assets/images/projects/tuto-player/thumbnail.avif";
+
+import gengoluraScreenshot1 from "@/assets/images/projects/gengo-lura/screenshot1.avif";
+import gengoluraScreenshot2 from "@/assets/images/projects/gengo-lura/screenshot2.avif";
+
+import tutoplayerScreenshot1 from "@/assets/images/projects/tuto-player/screenshot1.avif";
+import tutoplayerScreenshot2 from "@/assets/images/projects/tuto-player/screenshot2.avif";
+import tutoplayerScreenshot3 from "@/assets/images/projects/tuto-player/screenshot3.avif";
+
 export type ProjectData = {
   id: number;
   title?: string;
@@ -41,7 +54,7 @@ export const ProjectsData: ProjectData[] = [
     description:
       "A full-stack document search and management platform developed during my internship at the Bank of Algeria. The application provides a public interface for quickly searching and accessing regulatory PDF documents, alongside a role-based administrative panel for managing documents, document types, statuses, users, and related resources. The system is powered by a Laravel REST API and MySQL, with optional AI-assisted search and response generation through Ollama or Gemini.",
     client: "Bank of Algeria",
-    thumbnail: "https://picsum.photos/seed/boa-search/1920/1080",
+    thumbnail: boaThumbnail,
     screenshots: [
       "https://picsum.photos/seed/boa-search-1/1200/720",
       "https://picsum.photos/seed/boa-search-2/1820/980",
@@ -77,11 +90,11 @@ export const ProjectsData: ProjectData[] = [
     description:
       "A lightweight browser-based video player designed for watching locally stored tutorials and courses. It turns video folders into organized playlists and course tabs while keeping playback progress, subtitles, and user preferences available directly in the browser without requiring a backend.",
     client: "Personal Project",
-    thumbnail: "https://picsum.photos/seed/tutoplayer/1920/1080",
+    thumbnail: tutoPlayer,
     screenshots: [
-      "https://picsum.photos/seed/tutoplayer-1/1200/720",
-      "https://picsum.photos/seed/tutoplayer-2/1820/980",
-      "https://picsum.photos/seed/tutoplayer-3/1440/1200",
+      tutoplayerScreenshot1,
+      tutoplayerScreenshot2,
+      tutoplayerScreenshot3,
     ],
     features: [
       "Multi-course playlists : Drop multiple course folders to automatically create separate tabs with collapsible lesson sections.",
@@ -110,12 +123,8 @@ export const ProjectsData: ProjectData[] = [
     description:
       "A local-first audio player built for language learning and focused listening. GengoLura synchronizes audio files with WebVTT transcripts, provides real-time word and sentence highlighting, and lets users organize tracks, bookmark important moments, and continue listening without sending their files to a server.",
     client: "Personal Project",
-    thumbnail: "https://picsum.photos/seed/gengolura/1920/1080",
-    screenshots: [
-      "https://picsum.photos/seed/gengolura-1/1200/720",
-      "https://picsum.photos/seed/gengolura-2/1820/980",
-      "https://picsum.photos/seed/gengolura-3/1440/1200",
-    ],
+    thumbnail: gengoLura,
+    screenshots: [gengoluraScreenshot1, gengoluraScreenshot2],
     features: [
       "Synchronized transcript highlighting : Tracks audio playback against WebVTT timestamps with precise word-level and sentence-level highlighting.",
       "Interactive transcript : Click a word or sentence to jump directly to the corresponding position in the audio.",
@@ -145,11 +154,11 @@ export const ProjectsData: ProjectData[] = [
 
   {
     id: 4,
-    title: "Nyanya | Offline Pomodoro & Productivity Tracker",
+    title: "Nyanya | Pomodoro & Productivity Tracker",
     description:
-      "A local-first Pomodoro productivity application built as an installable Progressive Web App. Nyanya combines customizable focus sessions with detailed productivity statistics, tagging, notifications, and long-term activity tracking while keeping all user data stored locally on the device.",
+      "A local-first Pomodoro productivity application built as an installable PWA (Progressive Web App). Nyanya combines customizable focus sessions with detailed productivity statistics, tagging, notifications, and long-term activity tracking while keeping all user data stored locally on the device.",
     client: "Personal Project",
-    thumbnail: "https://picsum.photos/seed/nyanya/1920/1080",
+    thumbnail: nyanya,
     screenshots: [
       "https://picsum.photos/seed/nyanya-1/1200/720",
       "https://picsum.photos/seed/nyanya-2/1820/980",
@@ -189,7 +198,7 @@ export const ProjectsData: ProjectData[] = [
     description:
       "A privacy-first web application for taking structured notes while listening to audio. AudioMark lets users create timestamped markers, attach notes to precise moments, export and import annotations, and resume listening sessions without uploading their audio or annotations to a server.",
     client: "Personal Project",
-    thumbnail: "https://picsum.photos/seed/audiomark/1920/1080",
+    thumbnail: audioMark,
     screenshots: [
       "https://picsum.photos/seed/audiomark-1/1200/720",
       "https://picsum.photos/seed/audiomark-2/1820/980",

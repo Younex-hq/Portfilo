@@ -7,7 +7,9 @@ import ShinyText from "../common/ShinyText";
 
 export default function Projects() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [activeCardId, setActiveCardId] = useState<string | number | null>(null);
+  const [activeCardId, setActiveCardId] = useState<string | number | null>(
+    null,
+  );
 
   useGSAP(
     () => {
@@ -71,7 +73,9 @@ export default function Projects() {
               links={pd.links}
               features={pd.features}
               isExpanded={activeCardId === pd.id}
-              onToggle={() => setActiveCardId(activeCardId === pd.id ? null : pd.id)}
+              onToggle={() =>
+                setActiveCardId(activeCardId === pd.id ? null : pd.id)
+              }
             />
           ))}
         </div>
@@ -111,7 +115,10 @@ function ProjectCard({
   useEffect(() => {
     if (isExpanded && cardRef.current) {
       setTimeout(() => {
-        cardRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+        cardRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
       }, 300);
     }
   }, [isExpanded]);
@@ -119,7 +126,7 @@ function ProjectCard({
   return (
     <div
       ref={cardRef}
-      className={`border-off-white/10 hover:border-off-white/30 relative mb-5 overflow-hidden rounded-2xl border border-b-2 p-2 sm:w-full sm:p-5 ${isExpanded ? "border-off-white/20 shadow-xl shadow-gray-500/10" : "cursor-pointer"}`}
+      className={`border-off-white/10 hover:border-off-white/30 relative mb-5 overflow-hidden rounded-2xl border border-b-2 p-2 sm:w-full sm:p-5 ${isExpanded ? "border-off-white/20 shadow-xl shadow-gray-500/10 grayscale-0" : "cursor-pointer grayscale-0"}`}
       onClick={onToggle}
     >
       <div className="flex justify-between gap-5">
@@ -154,7 +161,9 @@ function ProjectCard({
           isExpanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
         }`}
       >
-        <div className={`overflow-hidden transition-opacity duration-500 ${isExpanded ? "opacity-100" : "opacity-0"}`}>
+        <div
+          className={`overflow-hidden transition-opacity duration-500 ${isExpanded ? "opacity-100" : "opacity-0"}`}
+        >
           <div className="relative">
             {/*<div>Screenshots</div>*/}
             <div className="mt-5 flex gap-2 overflow-scroll sm:overflow-auto">
@@ -169,7 +178,7 @@ function ProjectCard({
                 >
                   <img
                     src={pic}
-                    className="h-full w-full scale-105 cursor-pointer object-cover hover:scale-100 transition-transform duration-300"
+                    className="h-full w-full scale-105 cursor-pointer object-cover transition-transform duration-300 hover:scale-100"
                   />
                 </div>
               ))}
@@ -192,7 +201,9 @@ function ProjectCard({
                 </div>
                 <ul>
                   {features.map((feature, i) => (
-                    <li key={i} className="py-1">{feature}</li>
+                    <li key={i} className="py-1">
+                      {feature}
+                    </li>
                   ))}
                 </ul>
               </div>
