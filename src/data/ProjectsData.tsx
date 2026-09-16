@@ -5,6 +5,7 @@ import {
   FaHtml5 as IconHtml,
   FaCss3Alt as IconCss,
   FaJs as IconJavascript,
+  FaDocker as IconDocker,
 } from "react-icons/fa";
 import {
   SiShadcnui as IconShadcn,
@@ -22,7 +23,8 @@ import { HiOutlineCircleStack as IconDatabase } from "react-icons/hi2";
 import { GrMysql as IconMysql } from "react-icons/gr";
 import { FaRegClosedCaptioning as IconCloseCaption } from "react-icons/fa6";
 
-import boaThumbnail from "@/assets/images/projects/boa-search/thumbnail.webp";
+import boaThumbnail from "@/assets/images/projects/boa-search/thumbnail.avif";
+
 import audioMark from "@/assets/images/projects/audio-mark/thumbnail.avif";
 import gengoLura from "@/assets/images/projects/gengo-lura/thumbnail.avif";
 import nyanya from "@/assets/images/projects/nyanya/thumbnail.avif";
@@ -34,6 +36,15 @@ import gengoluraScreenshot2 from "@/assets/images/projects/gengo-lura/screenshot
 import tutoplayerScreenshot1 from "@/assets/images/projects/tuto-player/screenshot1.avif";
 import tutoplayerScreenshot2 from "@/assets/images/projects/tuto-player/screenshot2.avif";
 import tutoplayerScreenshot3 from "@/assets/images/projects/tuto-player/screenshot3.avif";
+
+import nyanyaScreenshot1 from "@/assets/images/projects/nyanya/screenshot1.avif";
+import nyanyaScreenshot2 from "@/assets/images/projects/nyanya/screenshot2.avif";
+import nyanyaScreenshot3 from "@/assets/images/projects/nyanya/screenshot3.avif";
+import nyanyaScreenshot4 from "@/assets/images/projects/nyanya/screenshot4.avif";
+
+import audiomarkScreenshot1 from "@/assets/images/projects/audio-mark/screenshot1.avif";
+import audiomarkScreenshot2 from "@/assets/images/projects/audio-mark/screenshot2.avif";
+import audiomarkScreenshot3 from "@/assets/images/projects/audio-mark/screenshot3.avif";
 
 export type ProjectData = {
   id: number;
@@ -70,10 +81,11 @@ export const ProjectsData: ProjectData[] = [
     tech: [
       { icon: <IconReact />, name: "React" },
       { icon: <IconLaravel />, name: "Laravel" },
-      { icon: <IconRestApi />, name: "REST API" },
       { icon: <IconMysql />, name: "MySQL" },
-      { icon: <IconTailwindcss />, name: "Tailwind CSS" },
-      { icon: <IconShadcn />, name: "shadcn/ui" },
+      { icon: <IconRestApi />, name: "REST API" },
+      { icon: <IconDocker />, name: "Docker" },
+      // { icon: <IconTailwindcss />, name: "Tailwind CSS" },
+      // { icon: <IconShadcn />, name: "shadcn/ui" },
     ],
     links: [
       {
@@ -160,9 +172,10 @@ export const ProjectsData: ProjectData[] = [
     client: "Personal Project",
     thumbnail: nyanya,
     screenshots: [
-      "https://picsum.photos/seed/nyanya-1/1200/720",
-      "https://picsum.photos/seed/nyanya-2/1820/980",
-      "https://picsum.photos/seed/nyanya-3/1440/1200",
+      nyanyaScreenshot1,
+      nyanyaScreenshot2,
+      nyanyaScreenshot3,
+      nyanyaScreenshot4,
     ],
     features: [
       "Customizable Pomodoro timer : Supports focus, short-break, and long-break sessions with configurable durations.",
@@ -200,9 +213,9 @@ export const ProjectsData: ProjectData[] = [
     client: "Personal Project",
     thumbnail: audioMark,
     screenshots: [
-      "https://picsum.photos/seed/audiomark-1/1200/720",
-      "https://picsum.photos/seed/audiomark-2/1820/980",
-      "https://picsum.photos/seed/audiomark-3/1440/1200",
+      audiomarkScreenshot1,
+      audiomarkScreenshot2,
+      audiomarkScreenshot3,
     ],
     features: [
       "Timestamped markers : Create precise markers while listening and jump directly back to important moments in the audio.",
