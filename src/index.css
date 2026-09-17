@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Cal+Sans&family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Cal+Sans&family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Italianno&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap");
 
 @import "tailwindcss";
 
@@ -25,7 +26,7 @@
 
 @theme {
   --font-family: "Google Sans Flex", sans-serif;
-  --font-italianno: "Italianno", cursive;
+  --font-italianno: "Italianno", "Tangerine", cursive;
   --font-zodiak: "Zodiak", serif;
 
   --breakpoint-xl: 1280px;
