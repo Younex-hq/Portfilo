@@ -24,24 +24,27 @@ import { GrMysql as IconMysql } from "react-icons/gr";
 import { FaRegClosedCaptioning as IconCloseCaption } from "react-icons/fa6";
 
 import boaThumbnail from "@/assets/images/projects/boa-search/thumbnail.avif";
+import boaScreenshot1 from "@/assets/images/projects/boa-search/screenshot1.avif";
+import boaScreenshot2 from "@/assets/images/projects/boa-search/screenshot2.avif";
+import boaScreenshot3 from "@/assets/images/projects/boa-search/screenshot3.avif";
+import boaScreenshot4 from "@/assets/images/projects/boa-search/screenshot4.avif";
 
-import audioMark from "@/assets/images/projects/audio-mark/thumbnail.avif";
 import gengoLura from "@/assets/images/projects/gengo-lura/thumbnail.avif";
-import nyanya from "@/assets/images/projects/nyanya/thumbnail.avif";
-import tutoPlayer from "@/assets/images/projects/tuto-player/thumbnail.avif";
-
 import gengoluraScreenshot1 from "@/assets/images/projects/gengo-lura/screenshot1.avif";
 import gengoluraScreenshot2 from "@/assets/images/projects/gengo-lura/screenshot2.avif";
 
+import tutoPlayer from "@/assets/images/projects/tuto-player/thumbnail.avif";
 import tutoplayerScreenshot1 from "@/assets/images/projects/tuto-player/screenshot1.avif";
 import tutoplayerScreenshot2 from "@/assets/images/projects/tuto-player/screenshot2.avif";
 import tutoplayerScreenshot3 from "@/assets/images/projects/tuto-player/screenshot3.avif";
 
+import nyanya from "@/assets/images/projects/nyanya/thumbnail.avif";
 import nyanyaScreenshot1 from "@/assets/images/projects/nyanya/screenshot1.avif";
 import nyanyaScreenshot2 from "@/assets/images/projects/nyanya/screenshot2.avif";
 import nyanyaScreenshot3 from "@/assets/images/projects/nyanya/screenshot3.avif";
 import nyanyaScreenshot4 from "@/assets/images/projects/nyanya/screenshot4.avif";
 
+import audioMark from "@/assets/images/projects/audio-mark/thumbnail.avif";
 import audiomarkScreenshot1 from "@/assets/images/projects/audio-mark/screenshot1.avif";
 import audiomarkScreenshot2 from "@/assets/images/projects/audio-mark/screenshot2.avif";
 import audiomarkScreenshot3 from "@/assets/images/projects/audio-mark/screenshot3.avif";
@@ -67,9 +70,10 @@ export const ProjectsData: ProjectData[] = [
     client: "Bank of Algeria",
     thumbnail: boaThumbnail,
     screenshots: [
-      "https://picsum.photos/seed/boa-search-1/1200/720",
-      "https://picsum.photos/seed/boa-search-2/1820/980",
-      "https://picsum.photos/seed/boa-search-3/1440/1200",
+      boaScreenshot1,
+      boaScreenshot2,
+      boaScreenshot3,
+      boaScreenshot4,
     ],
     features: [
       "Full-text document search : Search across indexed document content and metadata to quickly locate relevant regulatory documents.",

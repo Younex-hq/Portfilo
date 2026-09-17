@@ -117,7 +117,7 @@ function ProjectCard({
       setTimeout(() => {
         cardRef.current?.scrollIntoView({
           behavior: "smooth",
-          block: "center",
+          block: "start",
         });
       }, 300);
     }
