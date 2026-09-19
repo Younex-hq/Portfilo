@@ -8,21 +8,21 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-export type NavItem = {
+type NavItem = {
   name: string;
   id: string;
   num?: string;
 };
 
-export const NAV_SECTIONS: NavItem[] = [
-  // { name: "Home", id: "hero", num: "01" },
+const NAV_SECTIONS: NavItem[] = [
+  { name: "Home", id: "hero", num: "00" },
   { name: "About Me", id: "about", num: "01" },
   { name: "Tech Stack", id: "tech-stack", num: "1.1" },
   { name: "Projects", id: "projects", num: "02" },
   { name: "Contact", id: "contact", num: "03" },
 ];
 
-export const HERO_NAV_ITEMS: NavItem[] = [
+const HERO_NAV_ITEMS: NavItem[] = [
   { name: "About Me", id: "about" },
   { name: "Projects", id: "projects" },
   { name: "Contact", id: "contact" },
@@ -31,7 +31,7 @@ export const HERO_NAV_ITEMS: NavItem[] = [
 /**
  * Smoothly scrolls to the target element by ID and updates the URL hash
  */
-export const scrollToSection = (id: string) => {
+const scrollToSection = (id: string) => {
   const element = document.getElementById(id);
   if (element) {
     element.scrollIntoView({
@@ -106,7 +106,7 @@ export default function NavElements() {
 // this navbar will be hidden in the hero section and appear when the user scrolls down
 export function SideNavbar() {
   const sideNavContainerRef = useRef<HTMLElement>(null);
-  const [activeId, setActiveId] = useState<string>("about");
+  const [activeId, setActiveId] = useState<string>("hero");
 
   // Track active section on scroll
   useEffect(() => {
@@ -126,6 +126,13 @@ export function SideNavbar() {
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Sync URL # with active section
+  useEffect(() => {
+    if (activeId) {
+      window.history.replaceState(null, "", `#${activeId}`);
+    }
+  }, [activeId]);
 
   useGSAP(
     () => {
@@ -152,7 +159,7 @@ export function SideNavbar() {
   return (
     <nav ref={sideNavContainerRef}>
       <ul className="relative flex list-none flex-col gap-1 rounded-4xl p-5 transition-all">
-        {NAV_SECTIONS.map((item, index) => {
+        {NAV_SECTIONS.filter(item => item.id !== "hero").map((item, index) => {
           const isActive = activeId === item.id;
           return (
             <li key={item.id} className="nav-list m-1">
@@ -178,7 +185,7 @@ export function SideNavbar() {
                   isActive
                     ? "text-off-white font-bold tracking-wide"
                     : "text-off-white/80 hover:tracking-wide hover:text-white"
-                }`}
+                } `}
               >
                 <span
                   className={`text-m ${isActive ? "font-italianno text-3xl" : "text-sm"}`}

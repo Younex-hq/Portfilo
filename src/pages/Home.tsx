@@ -18,7 +18,10 @@ export default function Home() {
           <Content />
         </div>
       </div>
-      <div className="h-[50vh]"></div>
+      <div className="h-[15vh] sm:h-[50vh]"></div>
+      <div className="bg-black pt-3 text-center tracking-wider text-white/50 sm:text-end">
+        BELIAMINE Younes - 2026 ©
+      </div>
     </div>
   );
 }
