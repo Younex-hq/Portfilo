@@ -149,7 +149,7 @@ export default function TechStack() {
   );
 
   return (
-    <div ref={teckStackRef} className="sm:max-w-325">
+    <div ref={teckStackRef} className="sm:max-w-325" id="tech-stack">
       <div className="p-5 text-4xl sm:p-0">
         <span className="font-italianno text-6xl">Tech</span> Stack
       </div>

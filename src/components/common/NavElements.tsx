@@ -17,6 +17,7 @@ export type NavItem = {
 export const NAV_SECTIONS: NavItem[] = [
   // { name: "Home", id: "hero", num: "01" },
   { name: "About Me", id: "about", num: "01" },
+  { name: "Tech Stack", id: "tech-stack", num: "1.1" },
   { name: "Projects", id: "projects", num: "02" },
   { name: "Contact", id: "contact", num: "03" },
 ];
