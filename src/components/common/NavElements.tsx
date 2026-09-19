@@ -159,50 +159,52 @@ export function SideNavbar() {
   return (
     <nav ref={sideNavContainerRef}>
       <ul className="relative flex list-none flex-col gap-1 rounded-4xl p-5 transition-all">
-        {NAV_SECTIONS.filter(item => item.id !== "hero").map((item, index) => {
-          const isActive = activeId === item.id;
-          return (
-            <li key={item.id} className="nav-list m-1">
-              {index === 0 && (
+        {NAV_SECTIONS.filter((item) => item.id !== "hero").map(
+          (item, index) => {
+            const isActive = activeId === item.id;
+            return (
+              <li key={item.id} className="nav-list m-1">
+                {index === 0 && (
+                  <a
+                    title="Go Up"
+                    className="text-off-white/60 absolute -top-10 ml-[5%] w-[50%] cursor-pointer pl-[5%] no-underline hover:text-white"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollToSection("hero");
+                    }}
+                  >
+                    ^
+                  </a>
+                )}
                 <a
-                  title="Go Up"
-                  className="text-off-white/60 absolute -top-10 ml-[5%] w-[50%] cursor-pointer pl-[5%] no-underline hover:text-white"
+                  href={`#${item.id}`}
                   onClick={(e) => {
                     e.preventDefault();
-                    scrollToSection("hero");
+                    scrollToSection(item.id);
                   }}
+                  className={`flex w-full cursor-pointer items-center justify-between rounded-xl px-4 py-2 no-underline transition-all duration-300 ${
+                    isActive
+                      ? "text-off-white font-bold tracking-wide"
+                      : "text-off-white/80 hover:tracking-wide hover:text-white"
+                  } `}
                 >
-                  ^
+                  <span
+                    className={`text-m ${isActive ? "font-italianno text-3xl" : "text-sm"}`}
+                  >
+                    {item.name}
+                  </span>
+                  <span
+                    className={`font-zodiak ml-4 text-xs transition-colors ${
+                      isActive ? "font-semibold" : "opacity-80"
+                    }`}
+                  >
+                    {item.num}
+                  </span>
                 </a>
-              )}
-              <a
-                href={`#${item.id}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(item.id);
-                }}
-                className={`flex w-full cursor-pointer items-center justify-between rounded-xl px-4 py-2 no-underline transition-all duration-300 ${
-                  isActive
-                    ? "text-off-white font-bold tracking-wide"
-                    : "text-off-white/80 hover:tracking-wide hover:text-white"
-                } `}
-              >
-                <span
-                  className={`text-m ${isActive ? "font-italianno text-3xl" : "text-sm"}`}
-                >
-                  {item.name}
-                </span>
-                <span
-                  className={`font-zodiak ml-4 text-xs transition-colors ${
-                    isActive ? "font-semibold" : "opacity-80"
-                  }`}
-                >
-                  {item.num}
-                </span>
-              </a>
-            </li>
-          );
-        })}
+              </li>
+            );
+          },
+        )}
       </ul>
     </nav>
   );
@@ -251,7 +253,7 @@ export function MobileNavBar() {
 
   return (
     <nav ref={navRef} className="fixed top-0 right-0 left-0 z-50 p-3 md:hidden">
-      <div className="bg-bg-dark/80 w-full rounded-2xl border border-white/10 px-4 py-2 shadow-xl backdrop-blur-md transition-all duration-300">
+      <div className="bg-bg-dark/30 w-full rounded-2xl border border-white/10 px-4 py-2 shadow-xl backdrop-blur-md transition-all duration-300">
         <div className="flex items-center justify-between">
           <button
             type="button"
@@ -290,7 +292,7 @@ export function MobileNavBar() {
           }`}
         >
           <div className="overflow-hidden">
-            <ul className="flex flex-col gap-1 border-t border-white/10 pt-3">
+            <ul className="flex list-none flex-col gap-1 border-t border-white/10 pt-3">
               {NAV_SECTIONS.map((item) => {
                 const isActive = activeId === item.id;
                 return (
@@ -302,19 +304,17 @@ export function MobileNavBar() {
                         scrollToSection(item.id);
                         setIsOpen(false);
                       }}
-                      className={`flex items-center justify-between rounded-xl px-4 py-2.5 transition-all duration-200 ${
+                      className={`flex items-center justify-between rounded-xl px-4 py-2.5 no-underline transition-all duration-200 ${
                         isActive
-                          ? "bg-white/10 font-medium text-white"
+                          ? "font-italianno bg-white/10 text-3xl font-medium text-white"
                           : "text-off-white/75 hover:bg-white/5 hover:text-white"
                       }`}
                     >
-                      <span className="text-base">{item.name}</span>
+                      <span className="">{item.name}</span>
                       <span
                         className={`font-zodiak text-sm ${
-                          isActive
-                            ? "text-main-green font-semibold"
-                            : "opacity-50"
-                        }`}
+                          isActive ? "font-semibold" : "opacity-80"
+                        } ${item.id === "hero" ? "hidden" : ""}`}
                       >
                         {item.num}
                       </span>
