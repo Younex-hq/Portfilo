@@ -214,7 +214,9 @@ export function SideNavbar() {
 export function MobileNavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeId, setActiveId] = useState<string>("hero");
+  const [isVisible, setIsVisible] = useState(true);
   const navRef = useRef<HTMLElement>(null);
+  const lastScrollY = useRef(0);
 
   // Track active section on scroll
   useEffect(() => {
@@ -235,6 +237,28 @@ export function MobileNavBar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Show/hide nav based on scroll direction
+  useEffect(() => {
+    const handleScrollDirection = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY < 50) {
+        // Always show at the very top
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY.current) {
+        // Scrolling down — hide
+        setIsVisible(false);
+        if (isOpen) setIsOpen(false);
+      } else {
+        // Scrolling up — show
+        setIsVisible(true);
+      }
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScrollDirection, { passive: true });
+    return () => window.removeEventListener("scroll", handleScrollDirection);
+  }, [isOpen]);
+
   // Close mobile nav when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -252,7 +276,12 @@ export function MobileNavBar() {
   }, [isOpen]);
 
   return (
-    <nav ref={navRef} className="fixed top-0 right-0 left-0 z-50 p-3 md:hidden">
+    <nav
+      ref={navRef}
+      className={`fixed top-0 right-0 left-0 z-50 p-3 transition-transform duration-300 ease-in-out md:hidden ${
+        isVisible ? "translate-y-0" : "-translate-y-full"
+      }`}
+    >
       <div className="bg-bg-dark/30 w-full rounded-2xl border border-white/10 px-4 py-2 shadow-xl backdrop-blur-md transition-all duration-300">
         <div className="flex items-center justify-between">
           <button
