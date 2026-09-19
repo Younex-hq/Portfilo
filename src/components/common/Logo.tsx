@@ -8,11 +8,11 @@ type LogoProps = {
 
 export function Logo({
   size = 70,
-  colorBgTW = "[#2988f5]",
+  colorBgTW = "main-green",
   colorTextTW = "white",
 }: LogoProps) {
-  //
-  // TODO : the logo is not showing on the mobile view for some fucking reason, it was working perfectly, then for some fucking reason it disappeared
+  const isMainGreen = colorBgTW === "main-green";
+  const isMainBlue = colorBgTW === "main-blue" || colorBgTW.includes("2988f5");
 
   return (
     <div
@@ -20,11 +20,18 @@ export function Logo({
       style={{ height: size, width: `calc(${size}px * 0.61)` }}
     >
       <YLogo
-        className={`absolute h-full w-auto text-${colorTextTW}`}
+        className={`absolute h-full w-auto ${colorTextTW === "white" ? "text-white" : `text-${colorTextTW}`}`}
         aria-label="Belimaine Younes Logo"
       />
       <div
-        className={`bg-${colorBgTW} aspect-square h-[60%] rounded-full`}
+        className={`aspect-square h-[60%] rounded-full ${
+          isMainGreen
+            ? "bg-main-green"
+            : isMainBlue
+              ? "bg-main-blue-light"
+              : "bg-main-green"
+        }`}
+        style={isMainGreen ? { backgroundColor: "#2fb1bc" } : undefined}
       ></div>
     </div>
   );

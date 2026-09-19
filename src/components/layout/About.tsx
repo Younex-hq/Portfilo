@@ -13,7 +13,7 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function About() {
   return (
-    <div className="m-auto mt-[10%]">
+    <div id="about" className="m-auto mt-[10%] scroll-mt-24">
       <div className="the-name">
         <TheName />
       </div>

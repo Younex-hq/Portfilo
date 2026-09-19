@@ -1,19 +1,55 @@
 import { Logo } from "./Logo";
 import Menu4Line from "./Menu4Line";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
+export type NavItem = {
+  name: string;
+  id: string;
+  num?: string;
+};
+
+export const NAV_SECTIONS: NavItem[] = [
+  // { name: "Home", id: "hero", num: "01" },
+  { name: "About Me", id: "about", num: "01" },
+  { name: "Projects", id: "projects", num: "02" },
+  { name: "Contact", id: "contact", num: "03" },
+];
+
+export const HERO_NAV_ITEMS: NavItem[] = [
+  { name: "About Me", id: "about" },
+  { name: "Projects", id: "projects" },
+  { name: "Contact", id: "contact" },
+];
+
+/**
+ * Smoothly scrolls to the target element by ID and updates the URL hash
+ */
+export const scrollToSection = (id: string) => {
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+    if (typeof window !== "undefined" && window.history?.pushState) {
+      window.history.pushState(null, "", `#${id}`);
+    }
+  }
+};
+
+// this nav bar will show in the hero section
 export default function NavElements() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
-      // into animation
+      // intro animation
       gsap.from(".nav-title", {
         autoAlpha: 0,
         y: 50,
@@ -44,17 +80,21 @@ export default function NavElements() {
     },
   );
 
-  const navTitle = ["About Me", "Projects", "Contact"];
-
   return (
     <div ref={containerRef}>
       <ul className="flex list-none rounded-4xl p-5">
-        {navTitle.map((nav, i) => (
-          <li
-            key={i}
-            className="nav-title m-2 cursor-pointer px-4 py-2 opacity-70 hover:opacity-100"
-          >
-            {nav}
+        {HERO_NAV_ITEMS.map((item) => (
+          <li key={item.id} className="nav-title m-2">
+            <a
+              href={`#${item.id}`}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection(item.id);
+              }}
+              className="text-off-white inline-block cursor-pointer rounded-full px-4 py-2 no-underline opacity-70 transition-all duration-300 hover:font-bold hover:tracking-wider hover:text-white hover:opacity-100"
+            >
+              {item.name}
+            </a>
           </li>
         ))}
       </ul>
@@ -62,10 +102,29 @@ export default function NavElements() {
   );
 }
 
+// this navbar will be hidden in the hero section and appear when the user scrolls down
 export function SideNavbar() {
-  const navTitle = ["About Me", "Projects", "Contact"];
-
   const sideNavContainerRef = useRef<HTMLElement>(null);
+  const [activeId, setActiveId] = useState<string>("about");
+
+  // Track active section on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPos = window.scrollY + 300;
+      for (let i = NAV_SECTIONS.length - 1; i >= 0; i--) {
+        const item = NAV_SECTIONS[i];
+        const el = document.getElementById(item.id);
+        if (el && el.offsetTop <= scrollPos) {
+          setActiveId(item.id);
+          return;
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useGSAP(
     () => {
@@ -91,30 +150,171 @@ export function SideNavbar() {
 
   return (
     <nav ref={sideNavContainerRef}>
-      <ul className="flex list-none flex-col rounded-4xl p-5">
-        {navTitle.map((nav, i) => (
-          <li
-            key={i}
-            className="nav-list m-2 flex w-full cursor-pointer items-center justify-between px-4 py-2 opacity-70 hover:opacity-100"
-          >
-            {nav} <span className="font-zodiak sm">0{i + 1}</span>
-          </li>
-        ))}
+      <ul className="relative flex list-none flex-col gap-1 rounded-4xl p-5 transition-all">
+        {NAV_SECTIONS.map((item, index) => {
+          const isActive = activeId === item.id;
+          return (
+            <li key={item.id} className="nav-list m-1">
+              {index === 0 && (
+                <a
+                  title="Go Up"
+                  className="text-off-white/60 absolute -top-10 ml-[5%] w-[50%] cursor-pointer pl-[5%] no-underline hover:text-white"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection("hero");
+                  }}
+                >
+                  ^
+                </a>
+              )}
+              <a
+                href={`#${item.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection(item.id);
+                }}
+                className={`flex w-full cursor-pointer items-center justify-between rounded-xl px-4 py-2 no-underline transition-all duration-300 ${
+                  isActive
+                    ? "text-off-white font-bold tracking-wide"
+                    : "text-off-white/80 hover:tracking-wide hover:text-white"
+                }`}
+              >
+                <span
+                  className={`text-m ${isActive ? "font-italianno text-3xl" : "text-sm"}`}
+                >
+                  {item.name}
+                </span>
+                <span
+                  className={`font-zodiak ml-4 text-xs transition-colors ${
+                    isActive ? "font-semibold" : "opacity-80"
+                  }`}
+                >
+                  {item.num}
+                </span>
+              </a>
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );
 }
 
+// this is the nav bar that will show on mobile view, when clicking on the menu icon it will expand vertically to show the navbar items
 export function MobileNavBar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeId, setActiveId] = useState<string>("hero");
+  const navRef = useRef<HTMLElement>(null);
+
+  // Track active section on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPos = window.scrollY + 180;
+      for (let i = NAV_SECTIONS.length - 1; i >= 0; i--) {
+        const item = NAV_SECTIONS[i];
+        const el = document.getElementById(item.id);
+        if (el && el.offsetTop <= scrollPos) {
+          setActiveId(item.id);
+          return;
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Close mobile nav when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isOpen &&
+        navRef.current &&
+        !navRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isOpen]);
+
   return (
-    <nav className="fixed top-0 right-0 left-0 z-50 p-3 md:hidden">
-      <div className="bg-bg-dark/20 w-full rounded-xl border border-white/10 px-4 py-2 shadow-md backdrop-blur-sm">
+    <nav ref={navRef} className="fixed top-0 right-0 left-0 z-50 p-3 md:hidden">
+      <div className="bg-bg-dark/80 w-full rounded-2xl border border-white/10 px-4 py-2 shadow-xl backdrop-blur-md transition-all duration-300">
         <div className="flex items-center justify-between">
-          <div className="relative">
-            <Logo size={50} colorBgTW="main-green" />
-          </div>
-          <div>
-            <Menu4Line width={"2rem"} height={"1.5rem"} />
+          <button
+            type="button"
+            onClick={() => {
+              scrollToSection("hero");
+              setIsOpen(false);
+            }}
+            className="relative cursor-pointer focus:outline-none"
+            aria-label="Scroll to top"
+          >
+            <Logo size={46} colorBgTW="main-green" />
+          </button>
+          <button
+            type="button"
+            onClick={() => setIsOpen((prev) => !prev)}
+            className="text-off-white cursor-pointer rounded-lg p-2 transition-colors hover:bg-white/10 focus:outline-none"
+            aria-label="Toggle navigation menu"
+            aria-expanded={isOpen}
+          >
+            <div
+              className={`transition-transform duration-300 ${
+                isOpen ? "scale-95 rotate-90" : ""
+              }`}
+            >
+              <Menu4Line width={"2rem"} height={"1.5rem"} />
+            </div>
+          </button>
+        </div>
+
+        {/* Vertically expandable mobile menu */}
+        <div
+          className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${
+            isOpen
+              ? "mt-2 grid-rows-[1fr] pb-2 opacity-100"
+              : "grid-rows-[0fr] opacity-0"
+          }`}
+        >
+          <div className="overflow-hidden">
+            <ul className="flex flex-col gap-1 border-t border-white/10 pt-3">
+              {NAV_SECTIONS.map((item) => {
+                const isActive = activeId === item.id;
+                return (
+                  <li key={item.id}>
+                    <a
+                      href={`#${item.id}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        scrollToSection(item.id);
+                        setIsOpen(false);
+                      }}
+                      className={`flex items-center justify-between rounded-xl px-4 py-2.5 transition-all duration-200 ${
+                        isActive
+                          ? "bg-white/10 font-medium text-white"
+                          : "text-off-white/75 hover:bg-white/5 hover:text-white"
+                      }`}
+                    >
+                      <span className="text-base">{item.name}</span>
+                      <span
+                        className={`font-zodiak text-sm ${
+                          isActive
+                            ? "text-main-green font-semibold"
+                            : "opacity-50"
+                        }`}
+                      >
+                        {item.num}
+                      </span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         </div>
       </div>

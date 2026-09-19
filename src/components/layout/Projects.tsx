@@ -50,7 +50,8 @@ export default function Projects() {
     <>
       <div
         ref={containerRef}
-        className="relative m-auto mt-[35%] w-screen max-w-325 px-2 sm:px-4 md:mt-[10%] md:w-full"
+        id="projects"
+        className="relative m-auto mt-[35%] w-screen max-w-325 px-2 sm:px-4 md:mt-[10%] md:w-full scroll-mt-24"
       >
         {/* Header */}
         <div className="mb-9 sm:mb-12">
@@ -174,7 +175,7 @@ function ProjectCard({
                   key={index}
                   className="border-off-white/10 aspect-video min-w-[80vw] flex-1 overflow-hidden rounded-2xl border sm:min-w-0"
                   onClick={(e) => screenshothandler(e, index)}
-                  style={{ cornerShape: "squircle" }}
+                  style={{ cornerShape: "squircle" } as React.CSSProperties}
                 >
                   <img
                     src={pic}

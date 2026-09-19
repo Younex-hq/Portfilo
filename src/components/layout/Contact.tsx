@@ -4,7 +4,10 @@ import ShinyText from "../common/ShinyText";
 export function Contact() {
   return (
     <>
-      <div className="relative m-auto mt-[35%] w-screen max-w-325 sm:px-4 md:mt-[10%] md:w-full">
+      <div
+        id="contact"
+        className="relative m-auto mt-[35%] w-screen max-w-325 sm:px-4 md:mt-[10%] md:w-full scroll-mt-24"
+      >
         <div className="mb-9 sm:mb-12">
           <div className="project degree-title text-center text-3xl sm:text-start sm:text-4xl">
             <span className="font-italianno text-6xl md:text-7xl">C</span>

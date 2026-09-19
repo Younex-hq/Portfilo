@@ -61,8 +61,28 @@ export default function ScrollDownArrow() {
     { scope: containerRef },
   );
 
+  const handleClick = () => {
+    const aboutEl = document.getElementById("about");
+    if (aboutEl) {
+      aboutEl.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
-    <div ref={containerRef} className="relative h-9 w-9">
+    <div
+      ref={containerRef}
+      onClick={handleClick}
+      role="button"
+      tabIndex={0}
+      aria-label="Scroll down to About Me"
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          handleClick();
+        }
+      }}
+      className="relative h-9 w-9 cursor-pointer transition-transform hover:scale-110 active:scale-95"
+    >
       <img
         ref={arrow1}
         src="/svg/arrow_down.svg"

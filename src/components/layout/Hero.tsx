@@ -38,7 +38,10 @@ export default function Hero() {
   return (
     <>
       <Background />
-      <div className="relative flex h-screen w-screen flex-col items-center justify-around overflow-hidden">
+      <div
+        id="hero"
+        className="relative flex h-screen w-screen flex-col items-center justify-around overflow-hidden"
+      >
         <div className="absolute -z-1 mt-[60vh] h-screen w-[90vw] md:mt-[50vh]">
           <HelloText />
         </div>
