@@ -28,18 +28,6 @@ export const ContactData: ContactItem[] = [
     title: "send me an email using your default email client",
   },
   {
-    icon: <IconGithub color="#e1d6eb" />,
-    name: "GitHub",
-    link: "https://github.com/Younex-hq",
-    title: "github.com/Younex-hq",
-  },
-  {
-    icon: <IconCodepen color="#c1cce2" />,
-    name: "CodePen",
-    link: "https://codepen.io/Younex-hq",
-    title: "codepen.io/Younex-hq",
-  },
-  {
     icon: <IconLinkedin color="#6bceff" />,
     name: "LinkedIn",
     link: "https://www.linkedin.com/in/beliamine",
@@ -50,5 +38,17 @@ export const ContactData: ContactItem[] = [
     name: "Behance",
     link: "https://www.behance.net/beliamine",
     title: "behance.net/beliamine",
+  },
+  {
+    icon: <IconGithub color="#e1d6eb" />,
+    name: "GitHub",
+    link: "https://github.com/Younex-hq",
+    title: "github.com/Younex-hq",
+  },
+  {
+    icon: <IconCodepen color="#c1cce2" />,
+    name: "CodePen",
+    link: "https://codepen.io/Younex-hq",
+    title: "codepen.io/Younex-hq",
   },
 ];

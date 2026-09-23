@@ -6,6 +6,9 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { LocalTime } from "../LocalTime";
 
+import vidLocationSd from "@/assets/media/vid-location-SD.webm";
+import vidLocationHd from "@/assets/media/vid-location-HD.webm";
+
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export function Location() {
@@ -74,7 +77,8 @@ export function Location() {
       <div className="font-italianno text-4xl md:text-6xl">From</div>
       <div className="video-container relative h-[70vh] w-full">
         <VideoPlayer
-          src="/media/vid-location.webm"
+          src={vidLocationSd}
+          hdSrc={vidLocationHd}
           rounded="rounded-2xl"
           className="h-full w-full rounded-t-2xl object-cover"
         />
