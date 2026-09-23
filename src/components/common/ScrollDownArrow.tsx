@@ -9,6 +9,7 @@ export default function ScrollDownArrow() {
   const containerRef = useRef<HTMLDivElement>(null);
   const arrow1 = useRef<HTMLImageElement>(null);
   const arrow2 = useRef<HTMLImageElement>(null);
+  const arrowSrc = `${import.meta.env.BASE_URL}svg/arrow_down.svg`;
 
   const loopTl = useRef<gsap.core.Timeline | null>(null);
 
@@ -85,11 +86,11 @@ export default function ScrollDownArrow() {
     >
       <img
         ref={arrow1}
-        src="/svg/arrow_down.svg"
+        src={arrowSrc}
         alt="Scroll down arrow 1"
         className="absolute"
       />
-      <img ref={arrow2} src="/svg/arrow_down.svg" alt="Scroll down arrow 2" />
+      <img ref={arrow2} src={arrowSrc} alt="Scroll down arrow 2" />
     </div>
   );
 }
