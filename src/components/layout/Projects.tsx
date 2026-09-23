@@ -51,7 +51,7 @@ export default function Projects() {
       <div
         ref={containerRef}
         id="projects"
-        className="relative m-auto mt-[35%] w-screen max-w-325 px-2 sm:px-4 md:mt-[10%] md:w-full scroll-mt-24"
+        className="relative m-auto mt-[35%] w-screen max-w-325 scroll-mt-24 px-2 sm:px-4 md:mt-[10%] md:w-full"
       >
         {/* Header */}
         <div className="mb-9 sm:mb-12">
