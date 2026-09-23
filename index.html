@@ -1,10 +1,31 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <script>
+      // Recover SPA path from GitHub Pages 404→index redirect (see public/404.html).
+      // If the URL carries ?p=/projects, replace history with /projects before React mounts.
+      (function () {
+        try {
+          var params = new URLSearchParams(window.location.search);
+          var p = params.get("p");
+          if (p) {
+            params.delete("p");
+            var newSearch = params.toString();
+            window.history.replaceState(
+              null,
+              "",
+              decodeURIComponent(p) +
+                (newSearch ? "?" + newSearch : "") +
+                window.location.hash,
+            );
+          }
+        } catch (e) {}
+      })();
+    </script>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/webp" href="%BASE_URL%images/faviocon.webp" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio</title>
+    <title>BELIAMINE Younes - Portfolio</title>
   </head>
   <body>
     <div id="root"></div>

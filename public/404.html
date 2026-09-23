@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting&hellip;</title>
+    <script>
+      // SPA routing fallback for GitHub Pages.
+      // For PROJECT sites: the file lives at /REPO-NAME/404.html
+      // For USER sites:    the file lives at /404.html
+      // We auto-detect base by stripping the trailing "404.html" from the known location.
+      (function () {
+        var scriptPath = new URL(document.currentScript.src).pathname;
+        var base = scriptPath.slice(0, scriptPath.lastIndexOf("/") + 1);
+        var l = window.location;
+        var full = l.pathname + l.search + l.hash;
+        var remaining = full.startsWith(base) ? full.slice(base.length) : full;
+        l.replace(base + "?p=" + encodeURIComponent(remaining || "/") + l.hash);
+      })();
+    </script>
+  </head>
+  <body>
+    <strong> 404 Not Found </strong>
+  </body>
+</html>
