@@ -9,6 +9,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import TechStack from "./TechStack";
 import { Degrees } from "./Degrees";
 
+import vidDev from "@/assets/media/vid-dev.webm";
+import vidDesigner from "@/assets/media/vid-designer.webm";
+
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function About() {
@@ -144,7 +147,7 @@ function TheJob() {
                 eveloper
               </div>
             </div>
-            <VideoPlayer src="/media/vid-dev.webm" rounded="rounded-2xl" />
+            <VideoPlayer src={vidDev} rounded="rounded-2xl" />
           </div>
         </div>
 
@@ -152,7 +155,7 @@ function TheJob() {
         <div className="card2">
           <div className="">
             <div className="font-italianno text-6xl">&</div>
-            <VideoPlayer src="/media/vid-designer.webm" />
+            <VideoPlayer src={vidDesigner} />
             <div>
               <div className="m-auto w-fit text-center text-4xl font-bold uppercase sm:text-5xl">
                 Graphic{" "}
